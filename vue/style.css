@@ -1,0 +1,40 @@
+:root {
+    --snippet-width: 50vw;
+}
+
+#to-copy {
+    display: block;
+    position: relative;
+    float: left;
+    width: var(--snippet-width);
+}
+
+#to-write {
+    width: var(--snippet-width);
+}
+
+.to-be-copied {
+    display: block;
+    position: relative;
+    float: left;
+}
+
+.to-be-written {
+    display: flex;
+    position: absolute;
+    width: var(--snippet-width);
+}
+
+.code-snippet {
+    display: flex;
+    font-size: medium;
+}
+
+div,
+p,
+span,
+textarea {
+    -tab-size: 4;
+    -o-tab-size: 4;
+    -moz-tab-size: 4;
+}

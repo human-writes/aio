@@ -7,24 +7,24 @@ var p = (x, t, e) => (at(x, t, "read from private field"), e ? e.call(x) : t.get
     throw TypeError("Cannot add the same private member more than once");
   t instanceof WeakSet ? t.add(x) : t.set(x, e);
 }, _ = (x, t, e, n) => (at(x, t, "write to private field"), n ? n.call(x, e) : t.set(x, e), e);
-var pt = (x, t, e) => (at(x, t, "access private method"), e);
-import { defineComponent as mt, ref as W, onMounted as xt, openBlock as wt, createElementBlock as bt, createElementVNode as B } from "vue";
+var mt = (x, t, e) => (at(x, t, "access private method"), e);
+import { defineComponent as xt, ref as W, onMounted as wt, openBlock as bt, createElementBlock as kt, createElementVNode as q, normalizeClass as dt } from "vue";
 const ct = "&lt;", nt = "&gt;", ut = "/";
-var J, G, $, R, z, K, X, P, Y, it, kt;
-class jt {
+var J, G, S, R, z, K, X, P, Y, it, Tt;
+class Dt {
   constructor(t, e = !1) {
     A(this, it);
     A(this, J, []);
     A(this, G, "");
-    A(this, $, "");
+    A(this, S, "");
     A(this, R, []);
     A(this, z, []);
     A(this, K, []);
     A(this, X, []);
     A(this, P, []);
     A(this, Y, []);
-    _(this, G, t.trim()), _(this, $, `${p(this, G)}
-<Eof />`), this.protect(), e && this.markupQuotes(), this.collectWords(p(this, $)), this.makeMistakes();
+    _(this, G, t.trim()), _(this, S, `${p(this, G)}
+<Eof />`), this.protect(), e && this.markupQuotes(), this.collectWords(p(this, S)), this.makeMistakes();
   }
   get list() {
     return p(this, J);
@@ -33,7 +33,7 @@ class jt {
     return p(this, G);
   }
   get workingText() {
-    return p(this, $);
+    return p(this, S);
   }
   get words() {
     return p(this, R);
@@ -54,18 +54,18 @@ class jt {
     return p(this, X);
   }
   translateBracket(t, e, n = !1) {
-    let i = t, r = !1;
-    return "CDETQRG".includes(e) && (e === "C" && (i = n ? ")" : "(", r = !0), e === "D" && (i = n ? "}}" : "{{", r = !0), e === "E" && (i = n ? "}" : "{", r = !0), e === "T" && (i = n ? "]" : "[", r = !0), e === "Q" && (i = "'", r = !0), e === "R" && (i = '"', r = !0), e === "G" && (i = "`", r = !0)), { word: i, translated: r };
+    let i = t, o = !1;
+    return "CDETQRG".includes(e) && (e === "C" && (i = n ? ")" : "(", o = !0), e === "D" && (i = n ? "}}" : "{{", o = !0), e === "E" && (i = n ? "}" : "{", o = !0), e === "T" && (i = n ? "]" : "[", o = !0), e === "Q" && (i = "'", o = !0), e === "R" && (i = '"', o = !0), e === "G" && (i = "`", o = !0)), { word: i, translated: o };
   }
   markupQuotes() {
-    let t = p(this, $);
+    let t = p(this, S);
     const e = /(["'`])((\s|((\\)*)\\.|.)*?)\1/gm;
     let n;
     const i = [];
     for (; (n = e.exec(t)) !== null; )
       n.index === e.lastIndex && e.lastIndex++, i.push(n);
-    for (let r = i.length - 1; r > -1; r--) {
-      const d = i[r], a = d[1], u = d[0];
+    for (let o = i.length - 1; o > -1; o--) {
+      const d = i[o], a = d[1], u = d[0];
       let s = d[2];
       const h = d.index + 1, c = h + u.length - 1;
       let g = "";
@@ -73,16 +73,16 @@ class jt {
       const m = `&oq;${g}&cq;${s}&oq;/${g}&cq;`, v = t.substring(0, h - 1), f = t.substring(c);
       t = v + m + f;
     }
-    _(this, $, t);
+    _(this, S, t);
   }
   doAttributes(t) {
     const e = {}, n = /([\w]*)(\[\])?=("([\S ][^"]*)"|'([\S]*)'|\{\{ ([\w]*) \}\}|\{([\S ]*)\})/gm;
     let i;
-    const r = [];
+    const o = [];
     for (; (i = n.exec(t)) !== null; )
-      i.index === n.lastIndex && n.lastIndex++, r.push(i);
-    for (let d = 0; d < r.length; d++) {
-      const a = r[d], u = a[1], s = a[2], h = a[3].substring(0, 1), c = a[4];
+      i.index === n.lastIndex && n.lastIndex++, o.push(i);
+    for (let d = 0; d < o.length; d++) {
+      const a = o[d], u = a[1], s = a[2], h = a[3].substring(0, 1), c = a[4];
       s === "[]" ? (e[u] === void 0 && (e[u] = []), e[u].push(h + c)) : e[u] = `${h}${c}`;
     }
     return e;
@@ -97,16 +97,16 @@ class jt {
     const { text: n } = t;
     return n === "" || (e = n.substring(0, 5) === ct + ut), e;
   }
-  makeTag(t, e, n, i, r = !1) {
+  makeTag(t, e, n, i, o = !1) {
     const { text: d } = t, { name: a } = t, u = this.list.length, s = {};
-    return s.id = t.id, s.name = a === "" ? "Fragment" : a, s.text = d, s.startsAt = t.startsAt, s.endsAt = t.endsAt, r || (s.uid = pt(this, it, kt), s.method = "echo", s.props = s.name === "Fragment" ? [] : [], s.depth = n, s.hasCloser = i, s.node = !1, s.isSingle = !1), (e[n] === void 0 || e[n] === null) && (e[n] = u - 1), s.parentId = e[n], s;
+    return s.id = t.id, s.name = a === "" ? "Fragment" : a, s.text = d, s.startsAt = t.startsAt, s.endsAt = t.endsAt, o || (s.uid = mt(this, it, Tt), s.method = "echo", s.props = s.name === "Fragment" ? [] : [], s.depth = n, s.hasCloser = i, s.node = !1, s.isSingle = !1), (e[n] === void 0 || e[n] === null) && (e[n] = u - 1), s.parentId = e[n], s;
   }
   protect() {
-    let t = p(this, $);
-    t = t.trim(), t = t.replace(/\{\{/g, "<D>"), t = t.replace(/\}\}/g, "</D>"), t = t.replace(/\(/g, "<C>"), t = t.replace(/\)/g, "</C>"), t = t.replace(/\{/g, "<E>"), t = t.replace(/\}/g, "</E>"), t = t.replace(/\[/g, "<T>"), t = t.replace(/\]/g, "</T>"), t = t.replace(/<([/\w])/g, `${ct}$1`), t = t.replace(/>/g, nt), _(this, $, t);
+    let t = p(this, S);
+    t = t.trim(), t = t.replace(/\{\{/g, "<D>"), t = t.replace(/\}\}/g, "</D>"), t = t.replace(/\(/g, "<C>"), t = t.replace(/\)/g, "</C>"), t = t.replace(/\{/g, "<E>"), t = t.replace(/\}/g, "</E>"), t = t.replace(/\[/g, "<T>"), t = t.replace(/\]/g, "</T>"), t = t.replace(/<([/\w])/g, `${ct}$1`), t = t.replace(/>/g, nt), _(this, S, t);
   }
   collectTags(t, e = "[\\w]+") {
-    const n = [], i = [], r = `${ct}\\/?(${e})((\\s|.*?)*?)\\/?${nt}`, d = new RegExp(r, "gm");
+    const n = [], i = [], o = `${ct}\\/?(${e})((\\s|.*?)*?)\\/?${nt}`, d = new RegExp(o, "gm");
     let a;
     for (; (a = d.exec(t)) !== null; )
       a.index === d.lastIndex && d.lastIndex++, i.push(a);
@@ -118,32 +118,32 @@ class jt {
   }
   collectWords(t) {
     const e = [], n = [];
-    let i = /([&oqpg;]{4})[\w /]+([&cqpp;]{4})/gm, r;
-    for (; (r = i.exec(t)) !== null; )
-      r.index === i.lastIndex && i.lastIndex++, n.push(r);
+    let i = /([&oqpg;]{4})[\w /]+([&cqpp;]{4})/gm, o;
+    for (; (o = i.exec(t)) !== null; )
+      o.index === i.lastIndex && i.lastIndex++, n.push(o);
     let d = t;
     for (let a = n.length - 1; a > -1; a--) {
       const u = n[a][0], s = n[a].index + 1, h = s + u.length - 1, c = "•".repeat(u.length), g = d.substring(0, s - 1), m = d.substring(h);
       d = g + c + m;
     }
-    for (i = /([&lt;]{4})[\w /]+([&gt;]{4})/gm; (r = i.exec(d)) !== null; )
-      r.index === i.lastIndex && i.lastIndex++, n.push(r);
+    for (i = /([&lt;]{4})[\w /]+([&gt;]{4})/gm; (o = i.exec(d)) !== null; )
+      o.index === i.lastIndex && i.lastIndex++, n.push(o);
     for (let a = n.length - 1; a > -1; a--) {
       const u = n[a][0], s = n[a].index + 1, h = s + u.length - 1, c = "•".repeat(u.length), g = d.substring(0, s - 1), m = d.substring(h);
       d = g + c + m;
     }
-    for (i = /([&ltgt;]{4})/gm; (r = i.exec(d)) !== null; )
-      r.index === i.lastIndex && i.lastIndex++, n.push(r);
+    for (i = /([&ltgt;]{4})/gm; (o = i.exec(d)) !== null; )
+      o.index === i.lastIndex && i.lastIndex++, n.push(o);
     for (let a = n.length - 1; a > -1; a--) {
       const u = n[a][0], s = n[a].index + 1, h = s + u.length - 1, c = "•".repeat(u.length), g = d.substring(0, s - 1), m = d.substring(h);
       d = g + c + m;
     }
-    for (i = /((?!•)\S[^•\n]*)/g; (r = i.exec(d)) !== null; )
-      r.index === i.lastIndex && i.lastIndex++, p(this, z).push(r.index), p(this, K).push(r[0].length);
-    for (i = /((?!•)\S[^•\n ]*)/g; (r = i.exec(d)) !== null; ) {
-      r.index === i.lastIndex && i.lastIndex++;
+    for (i = /((?!•)\S[^•\n]*)/g; (o = i.exec(d)) !== null; )
+      o.index === i.lastIndex && i.lastIndex++, p(this, z).push(o.index), p(this, K).push(o[0].length);
+    for (i = /((?!•)\S[^•\n ]*)/g; (o = i.exec(d)) !== null; ) {
+      o.index === i.lastIndex && i.lastIndex++;
       const a = {};
-      a.text = r[0], a.startsAt = r.index, a.endsAt = a.startsAt + r[0].length - 1, e.push(a), p(this, X).push(a.endsAt);
+      a.text = o[0], a.startsAt = o.index, a.endsAt = a.startsAt + o[0].length - 1, e.push(a), p(this, X).push(a.endsAt);
     }
     _(this, R, e);
   }
@@ -153,35 +153,35 @@ class jt {
     p(this, R).forEach((n) => {
       if (t++, t % e !== 0 || n.text.length < 4)
         return;
-      const i = Math.ceil(Math.random() * n.text.length) - 1, r = String.fromCharCode(
+      const i = Math.ceil(Math.random() * n.text.length) - 1, o = String.fromCharCode(
         Math.ceil(Math.random() * 26) + 96
       );
-      p(this, Y).push(n.startsAt + i), p(this, P).push(r);
+      p(this, Y).push(n.startsAt + i), p(this, P).push(o);
     });
   }
   makeFaultyText() {
-    let t = p(this, $);
+    let t = p(this, S);
     p(this, P).forEach((e) => {
       const n = t.substring(0, e.startsAt), i = t.substring(e.endsAt + 1);
       t = n + e.text + i;
-    }), _(this, $, t);
+    }), _(this, S, t);
   }
   splitTags(t) {
-    let e = [...t], n = e.length, i = 0, r = !1, d = 0;
+    let e = [...t], n = e.length, i = 0, o = !1, d = 0;
     const a = n;
     let u = !1;
     const s = [], h = [];
-    for (; e.length > 0 && !r && !u; ) {
+    for (; e.length > 0 && !o && !u; ) {
       if (i === n) {
         if (i = 0, e = Object.values(e), n = e.length, n === 0) {
-          r = !0;
+          o = !0;
           continue;
         }
         d++, u = d > a + 1;
       }
       const c = e[i];
       if (e.length === 1 && c.name === "Eof") {
-        r = !0;
+        o = !0;
         continue;
       }
       if (this.isClosedTag(c) && c.name !== "Eof") {
@@ -205,10 +205,10 @@ class jt {
   }
   replaceTags(t, e) {
     let n = t, i = e;
-    const r = [];
+    const o = [];
     e.forEach((d) => {
-      r[d.id] = d;
-    }), r.sort(), i = Object.values(r);
+      o[d.id] = d;
+    }), o.sort(), i = Object.values(o);
     for (let d = i.length - 1; d > -1; d--) {
       const a = i[d];
       a.text = a.text.substring(0, a.text.length - 4) + ut + nt;
@@ -218,9 +218,9 @@ class jt {
     return n;
   }
   doComponents(t = "[\\w]+") {
-    let e = p(this, $);
+    let e = p(this, S);
     const n = this.collectTags(e, t), i = [];
-    let r = [], d = 0;
+    let o = [], d = 0;
     const a = [];
     let u = n.length, s = 0, h = !1, c = 0;
     const g = u;
@@ -243,7 +243,7 @@ class jt {
       }
       if (this.isClosedTag(b) && b.name !== "Eof") {
         const I = this.makeTag(b, a, d, !1);
-        I.isSingle = i.includes(b.id), r[I.id] = I, delete f[s], s++;
+        I.isSingle = i.includes(b.id), o[I.id] = I, delete f[s], s++;
         continue;
       }
       if (this.isCloserTag(b) && d--, s + 1 < u) {
@@ -261,24 +261,24 @@ class jt {
             C.contents.startsAt,
             C.contents.endsAt
           );
-          C.contents.text = lt, M.closer = C, r[M.id] = M, delete f[s], delete f[s + 1], s += 2;
+          C.contents.text = lt, M.closer = C, o[M.id] = M, delete f[s], delete f[s + 1], s += 2;
           continue;
         }
         !this.isCloserTag(b) && !this.isCloserTag(I) && (d++, a[d] = b.id);
       }
       s++;
     }
-    r = Object.values(r), _(this, $, e), _(this, J, r);
+    o = Object.values(o), _(this, S, e), _(this, J, o);
   }
 }
-J = new WeakMap(), G = new WeakMap(), $ = new WeakMap(), R = new WeakMap(), z = new WeakMap(), K = new WeakMap(), X = new WeakMap(), P = new WeakMap(), Y = new WeakMap(), it = new WeakSet(), kt = function() {
+J = new WeakMap(), G = new WeakMap(), S = new WeakMap(), R = new WeakMap(), z = new WeakMap(), K = new WeakMap(), X = new WeakMap(), P = new WeakMap(), Y = new WeakMap(), it = new WeakSet(), Tt = function() {
   return Date.now() * Math.random();
 };
-const S = "&lt;", O = "&gt;", j = "<", F = ">", N = "/", D = `
+const $ = "&lt;", O = "&gt;", j = "<", F = ">", N = "/", D = `
 `;
 var Z, Q, tt, U, V;
-class Tt {
-  constructor(t, e, n, i, r) {
+class yt {
+  constructor(t, e, n, i, o) {
     A(this, Z, "");
     A(this, Q, 60);
     A(this, tt, !1);
@@ -286,127 +286,127 @@ class Tt {
     });
     A(this, V, () => {
     });
-    _(this, U, t), _(this, Z, e), _(this, Q, n), _(this, V, r), _(this, tt, i);
+    _(this, U, t), _(this, Z, e), _(this, Q, n), _(this, V, o), _(this, tt, i);
   }
   async writeLikeAHuman(t, e) {
     const n = e !== void 0, i = p(this, U).querySelector(
-      `pre#${e} code`
-    ), r = p(this, U).querySelector(
-      n ? `pre#${t} code` : `div#${t}`
+      `pre.to-place.${e} code`
+    ), o = p(this, U).querySelector(
+      n ? `pre.to-place.${t} code` : `div.to-write.${t}`
     );
     let d = p(this, Q), a = [], u = "", s = "", h = "", c = null, g = [];
     const m = [];
     let v = "", f = "", b = -1;
     const I = [], M = [];
     let C = 0, lt = this;
-    function dt(l) {
-      return new Promise((o) => {
-        setTimeout(o, l);
+    function ht(l) {
+      return new Promise((r) => {
+        setTimeout(r, l);
       });
     }
-    function yt(l) {
+    function vt(l) {
       return Math.floor(l * 0.75 + Math.random() * l);
     }
-    async function E(l, o = !1) {
+    async function E(l, r = !1) {
       let T = a.join("");
-      o && (T = T.trim()), d = yt(p(lt, Q)), u += l, r.innerHTML = u + T, n && window.hljs !== void 0 && window.hljs.highlightElement(r), await dt(d);
+      r && (T = T.trim()), d = vt(p(lt, Q)), u += l, o.innerHTML = u + T, n && window.hljs !== void 0 && window.hljs.highlightElement(o), await ht(d);
     }
-    async function vt() {
+    async function Et() {
       const l = a.join("");
-      u = u.substring(0, u.length - 1), r.innerHTML = u + l, await dt(d);
+      u = u.substring(0, u.length - 1), o.innerHTML = u + l, await ht(d);
     }
-    function q(l) {
+    function B(l) {
       a.unshift(l);
     }
     function et() {
       delete a[0], a = Object.values(a);
     }
-    function Et(l) {
-      const o = [], T = /^([^\S][ \s]+)*/gm;
+    function At(l) {
+      const r = [], T = /^([^\S][ \s]+)*/gm;
       let L;
       for (; (L = T.exec(l)) !== null; )
-        L.index === T.lastIndex && T.lastIndex++, o.push(L[0] ?? "");
-      return o;
-    }
-    function At(l) {
-      const o = /^([^\S][ \s]+)*/gm;
-      return l.replace(o, "");
+        L.index === T.lastIndex && T.lastIndex++, r.push(L[0] ?? "");
+      return r;
     }
     function Ct(l) {
-      const o = l.split(`
+      const r = /^([^\S][ \s]+)*/gm;
+      return l.replace(r, "");
+    }
+    function _t(l) {
+      const r = l.split(`
 `);
       return `<br />
-`.repeat(o.length);
+`.repeat(r.length);
     }
-    async function _t(l) {
-      let o = "";
+    async function St(l) {
+      let r = "";
       return await fetch(l).then((T) => T.text()).then((T) => {
-        o = T;
-      }), o;
+        r = T;
+      }), r;
     }
     function $t(l) {
       return l.replaceAll(
-        S,
+        $,
         j
       ).replaceAll(O, F);
     }
-    function St() {
+    function It() {
       let l = null;
       return g.length && (l = g.shift(), l.hasCloser && m.push(l)), l;
     }
-    function It() {
+    function Lt() {
       return m.length ? m[m.length - 1] : null;
     }
-    function Lt() {
+    function Ot() {
       if (!I.length)
         return null;
-      const l = I.pop(), o = M.pop();
-      q(o ? D + s + l : l);
+      const l = I.pop(), r = M.pop();
+      B(r ? D + s + l : l);
     }
-    function ht(l) {
-      let o = null;
-      if (!m.length || (o = It(), l === o.depth))
-        return o;
+    function ft(l) {
+      let r = null;
+      if (!m.length || (r = Lt(), l === r.depth))
+        return r;
       let T = !1;
       for (let L = m.length - 1; L > -1; L--)
-        if (o = m[L], l === o.depth) {
+        if (r = m[L], l === r.depth) {
           T = !0;
           break;
         }
-      return T ? o : null;
+      return T ? r : null;
     }
-    const Ot = p(this, Z);
-    v = await _t(Ot);
-    const ft = Et(v);
-    v = At(v);
-    const k = new jt(v, n);
+    const Mt = p(this, Z);
+    v = await St(Mt);
+    const gt = At(v);
+    v = Ct(v);
+    const k = new Dt(v, n);
     if (k.doComponents(), g = [...k.list], f = k.workingText.replace(
-      `${D + S}Eof ${N}${O}`,
+      `${D + $}Eof ${N}${O}`,
       ""
     ), n) {
       console.log({ sourceComponent: i });
-      const l = Ct(v + `
+      const l = _t(v + `
 `);
       console.log({ emptyText: l }), i.innerHTML = l, window.hljs !== void 0 && window.hljs.highlightElement(i);
     }
-    const Mt = ft[C] ?? "";
-    await E(Mt), C++;
+    const jt = gt[C] ?? "";
+    await E(jt), C++;
     for (let l = 0; l < f.length; l++) {
-      let o = f[l];
-      if (n && o === j) {
-        o = S, await E(o);
+      let r = f[l];
+      if (n && r === j) {
+        r = $, await E(r);
         continue;
       }
       if (p(this, tt) && k.mistakes.length && k.phraseStarts.length && k.phraseStarts[0] === l) {
         const y = k.phraseLengths[0];
         for (let w = 0; w < y; w++) {
           const H = l + w, ot = k.mistakeCursors[0];
-          if (o = f[H], ot === H ? await E(k.mistakes[0]) : await E(o), k.wordEnds.includes(H) && k.mistakeCursors.length) {
+          if (r = f[H], ot === H ? await E(k.mistakes[0]) : await E(r), k.wordEnds.includes(H) && k.mistakeCursors.length) {
             const st = k.mistakeCursors[0];
             if (st <= H) {
               const rt = H - st + 1;
-              for (let gt = 0; gt < rt; gt++)
-                await vt(), w--;
+              for (let pt = 0; pt < rt; pt++)
+                await Et(), w--;
               k.mistakes.shift(), k.mistakeCursors.shift();
             }
           }
@@ -415,82 +415,82 @@ class Tt {
         continue;
       }
       const T = f.substring(l, l + 4), L = f.substring(l, l + 5);
-      if (o === "&" && L === "&oq;/") {
-        const y = f.substring(l + 5, l + 6), { word: w } = k.translateBracket(o, y);
+      if (r === "&" && L === "&oq;/") {
+        const y = f.substring(l + 5, l + 6), { word: w } = k.translateBracket(r, y);
         et(), await E(w), l += 9;
         continue;
       }
-      if (o === "&" && T === "&oq;") {
-        const y = f.substring(l + 4, l + 5), { word: w } = k.translateBracket(o, y);
-        q(w), await E(w), l += 8;
+      if (r === "&" && T === "&oq;") {
+        const y = f.substring(l + 4, l + 5), { word: w } = k.translateBracket(r, y);
+        B(w), await E(w), l += 8;
         continue;
       }
-      if (o === "&" && T === "&pp;") {
-        l += 3, await E(S);
+      if (r === "&" && T === "&pp;") {
+        l += 3, await E($);
         continue;
       }
-      if (o === "&" && T === "&pg;") {
+      if (r === "&" && T === "&pg;") {
         l += 3, await E(O);
         continue;
       }
       if (n) {
-        if (o === "/" && L === N + O && c !== null && !c.hasCloser && c.endsAt === l + 4) {
-          o = N + O, et(), await E(o), l += 4;
+        if (r === "/" && L === N + O && c !== null && !c.hasCloser && c.endsAt === l + 4) {
+          r = N + O, et(), await E(r), l += 4;
           continue;
         }
-        if (o === "&" && T === O && c !== null && c.endsAt === l + 3) {
-          et(), await E(O), c.hasCloser && Lt(), l += 3;
+        if (r === "&" && T === O && c !== null && c.endsAt === l + 3) {
+          et(), await E(O), c.hasCloser && Ot(), l += 3;
           continue;
         }
       }
-      if (o === "&" && L === S + N) {
-        c = ht(b), c === null && b - 1 > -1 && (c = ht(b - 1)), o = c.closer.text, n || (o = j + N + c.closer.name + F);
+      if (r === "&" && L === $ + N) {
+        c = ft(b), c === null && b - 1 > -1 && (c = ft(b - 1)), r = c.closer.text, n || (r = j + N + c.closer.name + F);
         const { word: y } = k.translateBracket(
-          o,
+          r,
           c.name,
           !0
         );
-        if (o = y, o !== "") {
-          et(), l = c.closer.endsAt, await E(o), b--, c = null;
+        if (r = y, r !== "") {
+          et(), l = c.closer.endsAt, await E(r), b--, c = null;
           continue;
         }
       }
-      if (o === "&" && T !== S) {
+      if (r === "&" && T !== $) {
         const y = f.substring(l).indexOf(";");
         if (y > 8) {
-          await E(o);
+          await E(r);
           continue;
         }
         const w = f.substring(l, l + y + 1);
         await E(w), l += w.length - 1;
         continue;
       }
-      if (o === "&" && T === S) {
-        if ((c === null || c !== null && c.dirty) && (c = St()), c.startsAt !== l) {
-          n ? (o = S, l += 3) : (o = c.text.replace(S, j), o = o.replace(O, F)), await E(o), c.dirty = !1;
+      if (r === "&" && T === $) {
+        if ((c === null || c !== null && c.dirty) && (c = It()), c.startsAt !== l) {
+          n ? (r = $, l += 3) : (r = c.text.replace($, j), r = r.replace(O, F)), await E(r), c.dirty = !1;
           continue;
         }
         c.dirty = !0;
         let y = !1, w = "";
-        o = c.text, n || (o = c.text.replace(S, j), o = o.replace(O, F));
+        r = c.text, n || (r = c.text.replace($, j), r = r.replace(O, F));
         const { word: H, translated: ot } = k.translateBracket(
-          o,
+          r,
           c.name
         );
-        if (o = H, c.hasCloser) {
+        if (r = H, c.hasCloser) {
           b++, w = c.closer.text, n || (w = j + N + c.closer.name + F);
           const { word: st, translated: rt } = k.translateBracket(
             w,
             c.name,
             !0
           );
-          w = st, y = c.closer.contents.text.indexOf(D) > -1, rt ? (l = c.endsAt, q(y ? D + s + w : w)) : (I.push(w), M.push(y));
+          w = st, y = c.closer.contents.text.indexOf(D) > -1, rt ? (l = c.endsAt, B(y ? D + s + w : w)) : (I.push(w), M.push(y));
         }
-        ot || (y = c.text.indexOf(D) > -1, n ? (o = S, l += 3, w = O) : (o = c.text.replace(S, j), o = o.replace(O, F), l += c.text.length - 1, w = j + N + c.closer.name + F), q(y ? D + s + w : w)), await E(o);
+        ot || (y = c.text.indexOf(D) > -1, n ? (r = $, l += 3, w = O) : (r = c.text.replace($, j), r = r.replace(O, F), l += c.text.length - 1, w = j + N + c.closer.name + F), B(y ? D + s + w : w)), await E(r);
         continue;
       }
-      if (o === D) {
-        s = ft[C] ?? "", h = D + s;
+      if (r === D) {
+        s = gt[C] ?? "", h = D + s;
         const y = a.length ? a[0].trim() : "", w = f.substring(
           l + 1,
           l + y.length + 1
@@ -498,7 +498,7 @@ class Tt {
         C++, await E(h, y === w);
         continue;
       }
-      await E(o);
+      await E(r);
     }
     u = $t(u), this.finishedEvent(u);
   }
@@ -507,13 +507,13 @@ class Tt {
   }
 }
 Z = new WeakMap(), Q = new WeakMap(), tt = new WeakMap(), U = new WeakMap(), V = new WeakMap();
-const Dt = { class: "to-be-copied" }, Bt = ["id"], qt = /* @__PURE__ */ B("code", null, null, -1), Ht = [
-  qt
-], Ft = { class: "to-be-written" }, Nt = ["id"], Wt = /* @__PURE__ */ B("code", null, null, -1), Gt = [
-  Wt
-], Rt = mt({
+const qt = { class: "to-be-placed" }, Bt = /* @__PURE__ */ q("code", null, null, -1), Ht = [
+  Bt
+], Ft = { class: "to-be-written" }, Nt = /* @__PURE__ */ q("code", null, null, -1), Wt = [
+  Nt
+], Gt = xt({
   name: "CodeWriter"
-}), Pt = /* @__PURE__ */ Object.assign(Rt, {
+}), Rt = /* @__PURE__ */ Object.assign(Gt, {
   props: {
     source: {
       default: ""
@@ -550,11 +550,11 @@ const Dt = { class: "to-be-copied" }, Bt = ["id"], qt = /* @__PURE__ */ B("code"
     }
   },
   setup(x) {
-    const t = x, e = W(null), n = W(""), i = W(""), r = W(""), d = () => {
+    const t = x, e = W(null), n = W(""), i = W(""), o = W(""), d = () => {
       let s = Date.now().toString();
       return s = s.substring(s.length - 4), s = btoa(s), s = s.replace(/=/g, ""), s;
     };
-    n.value = d(), i.value = "to-copy-" + n.value, r.value = "to-write-" + n.value, xt(async () => {
+    n.value = d(), i.value = "to-place-" + n.value, o.value = "to-write-" + n.value, wt(async () => {
       const s = e.value.ownerDocument;
       if (t.useHighlightJs) {
         const h = t.theme ?? "base16/monokai", c = t.language ?? "html", g = s.createElement("script");
@@ -575,7 +575,7 @@ const Dt = { class: "to-be-copied" }, Bt = ["id"], qt = /* @__PURE__ */ B("code"
       if (t.styles !== "" && t.classes !== "" && (t.styles.split(",").forEach((g) => {
         const m = s.createElement("style");
         m.innerHTML = `@import "${g}"`, s.head.appendChild(m);
-      }), s.getElementById("to-write").setAttribute("class", t.classes)), t.dependsOnSelector !== "") {
+      }), s.getElementById(o.value).setAttribute("class", t.classes)), t.dependsOnSelector !== "") {
         const h = s.querySelector(t.dependsOnSelector);
         if (h !== null) {
           const c = { attributes: !0 };
@@ -600,36 +600,34 @@ const Dt = { class: "to-be-copied" }, Bt = ["id"], qt = /* @__PURE__ */ B("code"
       e.value.dispatchEvent(h), e.value.setAttribute("finished", "true");
     }, u = async () => {
       const s = e.value.ownerDocument;
-      await new Tt(
+      await new yt(
         s,
         t.source,
         t.speed,
         t.makeTypos,
         a
-      ).writeLikeAHuman(r, i);
+      ).writeLikeAHuman(o.value, i.value);
     };
-    return (s, h) => (wt(), bt("div", {
+    return (s, h) => (bt(), kt("div", {
       ref_key: "root",
       ref: e,
       class: "code-snippet"
     }, [
-      B("div", Dt, [
-        B("pre", {
-          class: "placeholder",
-          id: i.value.value
-        }, Ht, 8, Bt)
+      q("div", qt, [
+        q("pre", {
+          class: dt(["to-place", i.value])
+        }, Ht, 2)
       ]),
-      B("div", Ft, [
-        B("pre", {
-          class: "to-write",
-          id: r.value.value
-        }, Gt, 8, Nt)
+      q("div", Ft, [
+        q("pre", {
+          class: dt(["to-write", o.value])
+        }, Wt, 2)
       ])
     ], 512));
   }
-}), Qt = { class: "to-be-written" }, Ut = ["id"], Vt = mt({
+}), Pt = { class: "to-be-written" }, Qt = xt({
   name: "TextWriter"
-}), Jt = /* @__PURE__ */ Object.assign(Vt, {
+}), Ut = /* @__PURE__ */ Object.assign(Qt, {
   props: {
     source: {
       default: ""
@@ -657,16 +655,16 @@ const Dt = { class: "to-be-copied" }, Bt = ["id"], qt = /* @__PURE__ */ B("code"
     }
   },
   setup(x) {
-    const t = x, e = W(null), n = W(""), i = W(""), r = () => {
+    const t = x, e = W(null), n = W(""), i = W(""), o = () => {
       let u = Date.now().toString();
       return u = u.substring(u.length - 4), u = btoa(u), u = u.replace(/=/g, ""), u;
     };
-    n.value = r(), i.value = "to-write-" + n.value, xt(async () => {
+    n.value = o(), i.value = "paper-" + n.value, wt(async () => {
       const u = e.value.ownerDocument;
       if (t.styles !== "" && t.classes !== "" && (t.styles.split(",").forEach((c) => {
         const g = u.createElement("style");
         g.innerHTML = `@import "${c}"`, u.head.appendChild(g);
-      }), u.getElementById("to-write").setAttribute("class", t.classes)), t.dependsOnSelector !== "") {
+      }), u.querySelector("." + i.value).setAttribute("class", t.classes)), t.dependsOnSelector !== "") {
         const s = u.querySelector(t.dependsOnSelector);
         if (s !== null) {
           const h = { attributes: !0 };
@@ -691,37 +689,36 @@ const Dt = { class: "to-be-copied" }, Bt = ["id"], qt = /* @__PURE__ */ B("code"
       e.value.dispatchEvent(s), e.value.setAttribute("finished", "true");
     }, a = async () => {
       const u = e.value.ownerDocument;
-      await new Tt(
+      await new yt(
         u,
         t.source,
         t.speed,
         t.makeTypos,
         d
-      ).writeLikeAHuman(i);
+      ).writeLikeAHuman(i.value);
     };
-    return (u, s) => (wt(), bt("div", {
+    return (u, s) => (bt(), kt("div", {
       ref_key: "root",
       ref: e,
       class: "text-snippet"
     }, [
-      B("div", Qt, [
-        B("div", {
-          class: "to-write",
-          id: i.value.value
-        }, null, 8, Ut)
+      q("div", Pt, [
+        q("div", {
+          class: dt(["to-write", i.value])
+        }, null, 2)
       ])
     ], 512));
   }
-}), zt = (x) => ({
+}), Vt = (x) => ({
   textSpeed: x.speed,
   textTypos: x.makeTypos
-}), Yt = {
+}), Kt = {
   install(x, t) {
-    x.config.globalProperties.$writerOptions = zt(t), x.component("text-writer", Jt), x.component("code-writer", Pt);
+    x.config.globalProperties.$writerOptions = Vt(t), x.component("text-writer", Ut), x.component("code-writer", Rt);
   }
 };
 export {
-  Pt as CodeWriter,
-  Jt as TextWriter,
-  Yt as VueWriterPlugin
+  Rt as CodeWriter,
+  Ut as TextWriter,
+  Kt as VueWriterPlugin
 };

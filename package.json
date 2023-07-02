@@ -7,11 +7,8 @@
   "scripts": {
     "web:dev": "cd web;webpack --config webpack.config.js",
     "web:build": "cd web;gulp",
-    "web:lint": "cd web;npx eslint --ext .mjs,.cjs,.js vue/src",
-    "vue:dev": "cd vue;vite",
+    "web:lint": "cd web;npx eslint --ext .mjs,.cjs,.js components",
     "vue:build": "cd vue;vite build && vue-tsc --emitDeclarationOnly",
-    "vue:types": "cd vue;vue-tsc ",
-    "vue:preview": "cd vue;vite preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

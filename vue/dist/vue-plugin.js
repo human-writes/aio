@@ -10,12 +10,12 @@ var f = (g, t, e) => (rt(g, t, "read from private field"), e ? e.call(g) : t.get
 var gt = (g, t, e) => (rt(g, t, "access private method"), e);
 import { defineComponent as pt, ref as mt, onMounted as xt, openBlock as wt, createElementBlock as bt, createElementVNode as B } from "vue";
 const at = "&lt;", st = "&gt;", ct = "/";
-var V, N, $, G, J, z, K, R, X, nt, Tt;
+var V, W, $, G, J, z, K, R, X, nt, Tt;
 class jt {
   constructor(t, e = !1) {
     A(this, nt);
     A(this, V, []);
-    A(this, N, "");
+    A(this, W, "");
     A(this, $, "");
     A(this, G, []);
     A(this, J, []);
@@ -23,14 +23,14 @@ class jt {
     A(this, K, []);
     A(this, R, []);
     A(this, X, []);
-    v(this, N, t.trim()), v(this, $, `${f(this, N)}
+    v(this, W, t.trim()), v(this, $, `${f(this, W)}
 <Eof />`), this.protect(), e && this.markupQuotes(), this.collectWords(f(this, $)), this.makeMistakes();
   }
   get list() {
     return f(this, V);
   }
   get text() {
-    return f(this, N);
+    return f(this, W);
   }
   get workingText() {
     return f(this, $);
@@ -271,10 +271,10 @@ class jt {
     s = Object.values(s), v(this, $, e), v(this, V, s);
   }
 }
-V = new WeakMap(), N = new WeakMap(), $ = new WeakMap(), G = new WeakMap(), J = new WeakMap(), z = new WeakMap(), K = new WeakMap(), R = new WeakMap(), X = new WeakMap(), nt = new WeakSet(), Tt = function() {
+V = new WeakMap(), W = new WeakMap(), $ = new WeakMap(), G = new WeakMap(), J = new WeakMap(), z = new WeakMap(), K = new WeakMap(), R = new WeakMap(), X = new WeakMap(), nt = new WeakSet(), Tt = function() {
   return Date.now() * Math.random();
 };
-const S = "&lt;", I = "&gt;", j = "<", W = ">", F = "/", D = `
+const S = "&lt;", I = "&gt;", j = "<", F = ">", N = "/", D = `
 `;
 var Y, P, Z, Q, U;
 class kt {
@@ -348,7 +348,7 @@ class kt {
       return r.replaceAll(
         S,
         j
-      ).replaceAll(I, W);
+      ).replaceAll(I, F);
     }
     function St() {
       let r = null;
@@ -381,7 +381,7 @@ class kt {
     _ = Ct(_);
     const w = new jt(_, n);
     if (w.doComponents(), m = [...w.list], x = w.workingText.replace(
-      `${D + S}Eof ${F}${I}`,
+      `${D + S}Eof ${N}${I}`,
       ""
     ), n) {
       console.log({ sourceComponent: i });
@@ -434,8 +434,8 @@ class kt {
         continue;
       }
       if (n) {
-        if (c === "/" && O === F + I && u !== null && !u.hasCloser && u.endsAt === r + 4) {
-          c = F + I, tt(), await E(c), r += 4;
+        if (c === "/" && O === N + I && u !== null && !u.hasCloser && u.endsAt === r + 4) {
+          c = N + I, tt(), await E(c), r += 4;
           continue;
         }
         if (c === "&" && b === I && u !== null && u.endsAt === r + 3) {
@@ -443,8 +443,8 @@ class kt {
           continue;
         }
       }
-      if (c === "&" && O === S + F) {
-        u = dt(y), u === null && y - 1 > -1 && (u = dt(y - 1)), c = u.closer.text, n || (c = j + F + u.closer.name + W);
+      if (c === "&" && O === S + N) {
+        u = dt(y), u === null && y - 1 > -1 && (u = dt(y - 1)), c = u.closer.text, n || (c = j + N + u.closer.name + F);
         const { word: T } = w.translateBracket(
           c,
           u.name,
@@ -467,18 +467,18 @@ class kt {
       }
       if (c === "&" && b === S) {
         if ((u === null || u !== null && u.dirty) && (u = St()), u.startsAt !== r) {
-          n ? (c = S, r += 3) : (c = u.text.replace(S, j), c = c.replace(I, W)), await E(c), u.dirty = !1;
+          n ? (c = S, r += 3) : (c = u.text.replace(S, j), c = c.replace(I, F)), await E(c), u.dirty = !1;
           continue;
         }
         u.dirty = !0;
         let T = !1, p = "";
-        c = u.text, n || (c = u.text.replace(S, j), c = c.replace(I, W));
+        c = u.text, n || (c = u.text.replace(S, j), c = c.replace(I, F));
         const { word: H, translated: lt } = w.translateBracket(
           c,
           u.name
         );
         if (c = H, u.hasCloser) {
-          y++, p = u.closer.text, n || (p = j + F + u.closer.name + W);
+          y++, p = u.closer.text, n || (p = j + N + u.closer.name + F);
           const { word: et, translated: ot } = w.translateBracket(
             p,
             u.name,
@@ -486,7 +486,7 @@ class kt {
           );
           p = et, T = u.closer.contents.text.indexOf(D) > -1, ot ? (r = u.endsAt, q(T ? D + l + p : p)) : (L.push(p), M.push(T));
         }
-        lt || (T = u.text.indexOf(D) > -1, n ? (c = S, r += 3, p = I) : (c = u.text.replace(S, j), c = c.replace(I, W), r += u.text.length - 1, p = j + F + u.closer.name + W), q(T ? D + l + p : p)), await E(c);
+        lt || (T = u.text.indexOf(D) > -1, n ? (c = S, r += 3, p = I) : (c = u.text.replace(S, j), c = c.replace(I, F), r += u.text.length - 1, p = j + N + u.closer.name + F), q(T ? D + l + p : p)), await E(c);
         continue;
       }
       if (c === D) {
@@ -520,7 +520,7 @@ const Dt = /* @__PURE__ */ B("div", { class: "to-be-copied" }, [
   Bt
 ], Ht = pt({
   name: "CodeWriter"
-}), Wt = /* @__PURE__ */ Object.assign(Ht, {
+}), Ft = /* @__PURE__ */ Object.assign(Ht, {
   props: {
     source: {
       default: ""
@@ -618,10 +618,10 @@ const Dt = /* @__PURE__ */ B("div", { class: "to-be-copied" }, [
       class: "code-snippet"
     }, qt, 512));
   }
-}), Ft = /* @__PURE__ */ B("div", { class: "to-be-written" }, [
+}), Nt = /* @__PURE__ */ B("div", { class: "to-be-written" }, [
   /* @__PURE__ */ B("div", { id: "to-write" })
-], -1), Nt = [
-  Ft
+], -1), Wt = [
+  Nt
 ], Gt = pt({
   name: "TextWriter"
 }), Rt = /* @__PURE__ */ Object.assign(Gt, {
@@ -695,18 +695,18 @@ const Dt = /* @__PURE__ */ B("div", { class: "to-be-copied" }, [
       ref_key: "root",
       ref: e,
       class: "text-snippet"
-    }, Nt, 512));
+    }, Wt, 512));
   }
 }), Pt = (g) => ({
   textSpeed: g.speed,
   textTypos: g.makeTypos
 }), Vt = {
   install(g, t) {
-    g.config.globalProperties.$writerOptions = Pt(t), g.component("TextWriter", Rt), g.component("CodeWriter", Wt);
+    g.config.globalProperties.$writerOptions = Pt(t), g.component("text-writer", Rt), g.component("code-writer", Ft);
   }
 };
 export {
-  Wt as CodeWriter,
+  Ft as CodeWriter,
   Rt as TextWriter,
   Vt as VueWriterPlugin
 };

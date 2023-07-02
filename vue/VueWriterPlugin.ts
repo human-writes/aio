@@ -18,7 +18,7 @@ export const VueWriterPlugin: Plugin = {
         // makes ColoredText available in your Vue.js app as either "$this.coloredText" (in your Source) or "{{ $coloredText }}" in your templates
         app.config.globalProperties.$writerOptions = createVueWriter(options);
         // register Headline as a global component, so you can use it wherever you want in your app
-        app.component("TextWriter", TextWriter);
-        app.component("CodeWriter", CodeWriter);
+        app.component("text-writer", TextWriter);
+        app.component("code-writer", CodeWriter);
     }
 };

@@ -24,13 +24,13 @@ export class Writer {
 
     #finishedCallback = () => {};
 
-    async writeLikeAHuman(toWrite, toCopy) {
-        const isCodeWriter = toCopy !== undefined;
+    async writeLikeAHuman(toWrite, toPlace) {
+        const isCodeWriter = toPlace !== undefined;
         const sourceComponent = this.#ownerDocument.querySelector(
-            `pre#${toCopy} code`
+            `pre.to-place.${toPlace} code`
         );
         const targetComponent = this.#ownerDocument.querySelector(
-            isCodeWriter ? `pre#${toWrite} code` : `div#${toWrite}`
+            isCodeWriter ? `pre.to-write.${toWrite} code` : `div.to-write.${toWrite}`
         );
 
         let speed = this.#speed;

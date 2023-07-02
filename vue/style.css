@@ -2,7 +2,7 @@
     --snippet-width: 50vw;
 }
 
-.to-copy {
+.to-place {
     display: block;
     position: relative;
     float: left;
@@ -13,7 +13,7 @@
     width: var(--snippet-width);
 }
 
-.to-be-copied {
+.to-be-placed {
     display: block;
     position: relative;
     float: left;

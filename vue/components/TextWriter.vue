@@ -1,7 +1,7 @@
 <template>
     <div ref="root" class="text-snippet">
         <div class="to-be-written">
-            <div class="to-write" :id="paperId.value"></div>
+            <div class="to-write" :class="paperId"></div>
         </div>
     </div>
 </template>
@@ -51,7 +51,7 @@ const makeId = () => {
 };
 
 mainId.value = makeId();
-paperId.value = "to-write-" + mainId.value;
+paperId.value = "paper-" + mainId.value;
 
 onMounted(async () => {
     const $doc = root.value.ownerDocument;
@@ -69,7 +69,7 @@ onMounted(async () => {
             $doc.head.appendChild(style);
         });
 
-        const parentDiv = $doc.getElementById("to-write");
+        const parentDiv = $doc.querySelector("." + paperId.value);
         parentDiv.setAttribute("class", props.classes);
     }
 
@@ -130,7 +130,7 @@ const writeLikeAHuman = async () => {
         props.makeTypos,
         onFinishedWriting
     );
-    await tw.writeLikeAHuman(paperId);
+    await tw.writeLikeAHuman(paperId.value);
 };
 </script>
 

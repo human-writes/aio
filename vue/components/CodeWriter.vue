@@ -1,13 +1,13 @@
 <template>
     <div ref="root" class="code-snippet">
-        <div class="to-be-copied">
+        <div class="to-be-placed">
             <pre
-                class="placeholder"
-                :id="placeholderId.value"
+                class="to-place"
+                :class="placeholderId"
             ><code></code></pre>
         </div>
         <div class="to-be-written">
-            <pre class="to-write" :id="paperId.value"><code></code></pre>
+            <pre class="to-write" :class="paperId"><code></code></pre>
         </div>
     </div>
 </template>
@@ -67,7 +67,7 @@ const makeId = () => {
 };
 
 mainId.value = makeId();
-placeholderId.value = "to-copy-" + mainId.value;
+placeholderId.value = "to-place-" + mainId.value;
 paperId.value = "to-write-" + mainId.value;
 
 onMounted(async () => {
@@ -114,7 +114,7 @@ onMounted(async () => {
             doc.head.appendChild(style);
         });
 
-        const parentDiv = doc.getElementById("to-write");
+        const parentDiv = doc.getElementById(paperId.value);
         parentDiv.setAttribute("class", props.classes);
     }
 
@@ -176,7 +176,7 @@ const writeLikeAHuman = async () => {
         props.makeTypos,
         onFinishedWriting
     );
-    await tw.writeLikeAHuman(paperId, placeholderId);
+    await tw.writeLikeAHuman(paperId.value, placeholderId.value);
 };
 </script>
 <script>

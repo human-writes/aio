@@ -1,7 +1,7 @@
 <template>
     <div ref="root" class="text-snippet">
         <div class="to-be-written">
-            <div id="to-write"></div>
+            <div class="to-write" :id="paperId.value"></div>
         </div>
     </div>
 </template>
@@ -11,6 +11,8 @@ import { onMounted, ref } from "vue";
 import { Writer } from "../../core/writer.js";
 
 const root = ref(null);
+const mainId = ref("");
+const paperId = ref("");
 
 const props = defineProps({
     source: {
@@ -38,6 +40,18 @@ const props = defineProps({
         default: false
     }
 });
+
+const makeId = () => {
+    let result = Date.now().toString();
+    result = result.substring(result.length - 4);
+    result = btoa(result);
+    result = result.replace(/=/g, "");
+
+    return result;
+};
+
+mainId.value = makeId();
+paperId.value = "to-write-" + mainId.value;
 
 onMounted(async () => {
     const $doc = root.value.ownerDocument;
@@ -116,7 +130,7 @@ const writeLikeAHuman = async () => {
         props.makeTypos,
         onFinishedWriting
     );
-    await tw.writeLikeAHuman("to-write");
+    await tw.writeLikeAHuman(paperId);
 };
 </script>
 

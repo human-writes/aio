@@ -1,10 +1,13 @@
 <template>
     <div ref="root" class="code-snippet">
         <div class="to-be-copied">
-            <pre id="to-copy"><code></code></pre>
+            <pre
+                class="placeholder"
+                :id="placeholderId.value"
+            ><code></code></pre>
         </div>
         <div class="to-be-written">
-            <pre id="to-write"><code></code></pre>
+            <pre class="to-write" :id="paperId.value"><code></code></pre>
         </div>
     </div>
 </template>
@@ -14,6 +17,9 @@ import { onMounted, ref } from "vue";
 import { Writer } from "../../core/writer.js";
 
 const root = ref(null);
+const mainId = ref("");
+const placeholderId = ref("");
+const paperId = ref("");
 
 const props = defineProps({
     source: {
@@ -50,6 +56,19 @@ const props = defineProps({
         default: "html"
     }
 });
+
+const makeId = () => {
+    let result = Date.now().toString();
+    result = result.substring(result.length - 4);
+    result = btoa(result);
+    result = result.replace(/=/g, "");
+
+    return result;
+};
+
+mainId.value = makeId();
+placeholderId.value = "to-copy-" + mainId.value;
+paperId.value = "to-write-" + mainId.value;
 
 onMounted(async () => {
     const doc = root.value.ownerDocument;
@@ -157,7 +176,7 @@ const writeLikeAHuman = async () => {
         props.makeTypos,
         onFinishedWriting
     );
-    await tw.writeLikeAHuman("to-write", "to-copy");
+    await tw.writeLikeAHuman(paperId, placeholderId);
 };
 </script>
 <script>

@@ -2,14 +2,14 @@
     --snippet-width: 50vw;
 }
 
-#to-copy {
+.to-copy {
     display: block;
     position: relative;
     float: left;
     width: var(--snippet-width);
 }
 
-#to-write {
+.to-write {
     width: var(--snippet-width);
 }
 
@@ -27,7 +27,7 @@
 
 .code-snippet {
     display: flex;
-    font-size: medium;
+    font-size: small;
 }
 
 div,

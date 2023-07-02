@@ -1,198 +1,198 @@
-var rt = (g, t, e) => {
-  if (!t.has(g))
+var at = (x, t, e) => {
+  if (!t.has(x))
     throw TypeError("Cannot " + e);
 };
-var f = (g, t, e) => (rt(g, t, "read from private field"), e ? e.call(g) : t.get(g)), A = (g, t, e) => {
-  if (t.has(g))
+var p = (x, t, e) => (at(x, t, "read from private field"), e ? e.call(x) : t.get(x)), A = (x, t, e) => {
+  if (t.has(x))
     throw TypeError("Cannot add the same private member more than once");
-  t instanceof WeakSet ? t.add(g) : t.set(g, e);
-}, v = (g, t, e, n) => (rt(g, t, "write to private field"), n ? n.call(g, e) : t.set(g, e), e);
-var gt = (g, t, e) => (rt(g, t, "access private method"), e);
-import { defineComponent as pt, ref as mt, onMounted as xt, openBlock as wt, createElementBlock as bt, createElementVNode as B } from "vue";
-const at = "&lt;", st = "&gt;", ct = "/";
-var V, W, $, G, J, z, K, R, X, nt, Tt;
+  t instanceof WeakSet ? t.add(x) : t.set(x, e);
+}, _ = (x, t, e, n) => (at(x, t, "write to private field"), n ? n.call(x, e) : t.set(x, e), e);
+var pt = (x, t, e) => (at(x, t, "access private method"), e);
+import { defineComponent as mt, ref as W, onMounted as xt, openBlock as wt, createElementBlock as bt, createElementVNode as B } from "vue";
+const ct = "&lt;", nt = "&gt;", ut = "/";
+var J, G, $, R, z, K, X, P, Y, it, kt;
 class jt {
   constructor(t, e = !1) {
-    A(this, nt);
-    A(this, V, []);
-    A(this, W, "");
-    A(this, $, "");
-    A(this, G, []);
+    A(this, it);
     A(this, J, []);
+    A(this, G, "");
+    A(this, $, "");
+    A(this, R, []);
     A(this, z, []);
     A(this, K, []);
-    A(this, R, []);
     A(this, X, []);
-    v(this, W, t.trim()), v(this, $, `${f(this, W)}
-<Eof />`), this.protect(), e && this.markupQuotes(), this.collectWords(f(this, $)), this.makeMistakes();
+    A(this, P, []);
+    A(this, Y, []);
+    _(this, G, t.trim()), _(this, $, `${p(this, G)}
+<Eof />`), this.protect(), e && this.markupQuotes(), this.collectWords(p(this, $)), this.makeMistakes();
   }
   get list() {
-    return f(this, V);
+    return p(this, J);
   }
   get text() {
-    return f(this, W);
+    return p(this, G);
   }
   get workingText() {
-    return f(this, $);
+    return p(this, $);
   }
   get words() {
-    return f(this, G);
+    return p(this, R);
   }
   get mistakes() {
-    return f(this, R);
+    return p(this, P);
   }
   get mistakeCursors() {
-    return f(this, X);
+    return p(this, Y);
   }
   get phraseStarts() {
-    return f(this, J);
+    return p(this, z);
   }
   get phraseLengths() {
-    return f(this, z);
+    return p(this, K);
   }
   get wordEnds() {
-    return f(this, K);
+    return p(this, X);
   }
   translateBracket(t, e, n = !1) {
-    let i = t, s = !1;
-    return "CDETQRG".includes(e) && (e === "C" && (i = n ? ")" : "(", s = !0), e === "D" && (i = n ? "}}" : "{{", s = !0), e === "E" && (i = n ? "}" : "{", s = !0), e === "T" && (i = n ? "]" : "[", s = !0), e === "Q" && (i = "'", s = !0), e === "R" && (i = '"', s = !0), e === "G" && (i = "`", s = !0)), { word: i, translated: s };
+    let i = t, r = !1;
+    return "CDETQRG".includes(e) && (e === "C" && (i = n ? ")" : "(", r = !0), e === "D" && (i = n ? "}}" : "{{", r = !0), e === "E" && (i = n ? "}" : "{", r = !0), e === "T" && (i = n ? "]" : "[", r = !0), e === "Q" && (i = "'", r = !0), e === "R" && (i = '"', r = !0), e === "G" && (i = "`", r = !0)), { word: i, translated: r };
   }
   markupQuotes() {
-    let t = f(this, $);
+    let t = p(this, $);
     const e = /(["'`])((\s|((\\)*)\\.|.)*?)\1/gm;
     let n;
     const i = [];
     for (; (n = e.exec(t)) !== null; )
       n.index === e.lastIndex && e.lastIndex++, i.push(n);
-    for (let s = i.length - 1; s > -1; s--) {
-      const o = i[s], a = o[1], d = o[0];
-      let l = o[2];
-      const h = o.index + 1, u = h + d.length - 1;
-      let m = "";
-      a === '"' ? m = "R" : a === "'" ? m = "Q" : a === "`" && (m = "G"), l = l.replace(/&lt;/g, "&pp;"), l = l.replace(/&gt;/g, "&pg;");
-      const k = `&oq;${m}&cq;${l}&oq;/${m}&cq;`, _ = t.substring(0, h - 1), x = t.substring(u);
-      t = _ + k + x;
+    for (let r = i.length - 1; r > -1; r--) {
+      const d = i[r], a = d[1], u = d[0];
+      let s = d[2];
+      const h = d.index + 1, c = h + u.length - 1;
+      let g = "";
+      a === '"' ? g = "R" : a === "'" ? g = "Q" : a === "`" && (g = "G"), s = s.replace(/&lt;/g, "&pp;"), s = s.replace(/&gt;/g, "&pg;");
+      const m = `&oq;${g}&cq;${s}&oq;/${g}&cq;`, v = t.substring(0, h - 1), f = t.substring(c);
+      t = v + m + f;
     }
-    v(this, $, t);
+    _(this, $, t);
   }
   doAttributes(t) {
     const e = {}, n = /([\w]*)(\[\])?=("([\S ][^"]*)"|'([\S]*)'|\{\{ ([\w]*) \}\}|\{([\S ]*)\})/gm;
     let i;
-    const s = [];
+    const r = [];
     for (; (i = n.exec(t)) !== null; )
-      i.index === n.lastIndex && n.lastIndex++, s.push(i);
-    for (let o = 0; o < s.length; o++) {
-      const a = s[o], d = a[1], l = a[2], h = a[3].substring(0, 1), u = a[4];
-      l === "[]" ? (e[d] === void 0 && (e[d] = []), e[d].push(h + u)) : e[d] = `${h}${u}`;
+      i.index === n.lastIndex && n.lastIndex++, r.push(i);
+    for (let d = 0; d < r.length; d++) {
+      const a = r[d], u = a[1], s = a[2], h = a[3].substring(0, 1), c = a[4];
+      s === "[]" ? (e[u] === void 0 && (e[u] = []), e[u].push(h + c)) : e[u] = `${h}${c}`;
     }
     return e;
   }
   isClosedTag(t) {
     let e = !1;
     const { text: n } = t;
-    return n === "" || (e = n.substring(n.length - 5, n.length) === ct + st), e;
+    return n === "" || (e = n.substring(n.length - 5, n.length) === ut + nt), e;
   }
   isCloserTag(t) {
     let e = !1;
     const { text: n } = t;
-    return n === "" || (e = n.substring(0, 5) === at + ct), e;
+    return n === "" || (e = n.substring(0, 5) === ct + ut), e;
   }
-  makeTag(t, e, n, i, s = !1) {
-    const { text: o } = t, { name: a } = t, d = this.list.length, l = {};
-    return l.id = t.id, l.name = a === "" ? "Fragment" : a, l.text = o, l.startsAt = t.startsAt, l.endsAt = t.endsAt, s || (l.uid = gt(this, nt, Tt), l.method = "echo", l.props = l.name === "Fragment" ? [] : [], l.depth = n, l.hasCloser = i, l.node = !1, l.isSingle = !1), (e[n] === void 0 || e[n] === null) && (e[n] = d - 1), l.parentId = e[n], l;
+  makeTag(t, e, n, i, r = !1) {
+    const { text: d } = t, { name: a } = t, u = this.list.length, s = {};
+    return s.id = t.id, s.name = a === "" ? "Fragment" : a, s.text = d, s.startsAt = t.startsAt, s.endsAt = t.endsAt, r || (s.uid = pt(this, it, kt), s.method = "echo", s.props = s.name === "Fragment" ? [] : [], s.depth = n, s.hasCloser = i, s.node = !1, s.isSingle = !1), (e[n] === void 0 || e[n] === null) && (e[n] = u - 1), s.parentId = e[n], s;
   }
   protect() {
-    let t = f(this, $);
-    t = t.trim(), t = t.replace(/\{\{/g, "<D>"), t = t.replace(/\}\}/g, "</D>"), t = t.replace(/\(/g, "<C>"), t = t.replace(/\)/g, "</C>"), t = t.replace(/\{/g, "<E>"), t = t.replace(/\}/g, "</E>"), t = t.replace(/\[/g, "<T>"), t = t.replace(/\]/g, "</T>"), t = t.replace(/<([/\w])/g, `${at}$1`), t = t.replace(/>/g, st), v(this, $, t);
+    let t = p(this, $);
+    t = t.trim(), t = t.replace(/\{\{/g, "<D>"), t = t.replace(/\}\}/g, "</D>"), t = t.replace(/\(/g, "<C>"), t = t.replace(/\)/g, "</C>"), t = t.replace(/\{/g, "<E>"), t = t.replace(/\}/g, "</E>"), t = t.replace(/\[/g, "<T>"), t = t.replace(/\]/g, "</T>"), t = t.replace(/<([/\w])/g, `${ct}$1`), t = t.replace(/>/g, nt), _(this, $, t);
   }
   collectTags(t, e = "[\\w]+") {
-    const n = [], i = [], s = `${at}\\/?(${e})((\\s|.*?)*?)\\/?${st}`, o = new RegExp(s, "gm");
+    const n = [], i = [], r = `${ct}\\/?(${e})((\\s|.*?)*?)\\/?${nt}`, d = new RegExp(r, "gm");
     let a;
-    for (; (a = o.exec(t)) !== null; )
-      a.index === o.lastIndex && o.lastIndex++, i.push(a);
-    let d = 0;
-    return i.forEach((l) => {
-      const h = l;
-      h.id = d, h.text = l[0], h.name = l[1] === null ? "Fragment" : l[1], h.startsAt = l.index, h.endsAt = l.index + h.text.length - 1, delete h[0], delete h[1], delete h[2], delete h[3], n.push(h), d++;
+    for (; (a = d.exec(t)) !== null; )
+      a.index === d.lastIndex && d.lastIndex++, i.push(a);
+    let u = 0;
+    return i.forEach((s) => {
+      const h = s;
+      h.id = u, h.text = s[0], h.name = s[1] === null ? "Fragment" : s[1], h.startsAt = s.index, h.endsAt = s.index + h.text.length - 1, delete h[0], delete h[1], delete h[2], delete h[3], n.push(h), u++;
     }), n;
   }
   collectWords(t) {
     const e = [], n = [];
-    let i = /([&oqpg;]{4})[\w /]+([&cqpp;]{4})/gm, s;
-    for (; (s = i.exec(t)) !== null; )
-      s.index === i.lastIndex && i.lastIndex++, n.push(s);
-    let o = t;
+    let i = /([&oqpg;]{4})[\w /]+([&cqpp;]{4})/gm, r;
+    for (; (r = i.exec(t)) !== null; )
+      r.index === i.lastIndex && i.lastIndex++, n.push(r);
+    let d = t;
     for (let a = n.length - 1; a > -1; a--) {
-      const d = n[a][0], l = n[a].index + 1, h = l + d.length - 1, u = "•".repeat(d.length), m = o.substring(0, l - 1), k = o.substring(h);
-      o = m + u + k;
+      const u = n[a][0], s = n[a].index + 1, h = s + u.length - 1, c = "•".repeat(u.length), g = d.substring(0, s - 1), m = d.substring(h);
+      d = g + c + m;
     }
-    for (i = /([&lt;]{4})[\w /]+([&gt;]{4})/gm; (s = i.exec(o)) !== null; )
-      s.index === i.lastIndex && i.lastIndex++, n.push(s);
+    for (i = /([&lt;]{4})[\w /]+([&gt;]{4})/gm; (r = i.exec(d)) !== null; )
+      r.index === i.lastIndex && i.lastIndex++, n.push(r);
     for (let a = n.length - 1; a > -1; a--) {
-      const d = n[a][0], l = n[a].index + 1, h = l + d.length - 1, u = "•".repeat(d.length), m = o.substring(0, l - 1), k = o.substring(h);
-      o = m + u + k;
+      const u = n[a][0], s = n[a].index + 1, h = s + u.length - 1, c = "•".repeat(u.length), g = d.substring(0, s - 1), m = d.substring(h);
+      d = g + c + m;
     }
-    for (i = /([&ltgt;]{4})/gm; (s = i.exec(o)) !== null; )
-      s.index === i.lastIndex && i.lastIndex++, n.push(s);
+    for (i = /([&ltgt;]{4})/gm; (r = i.exec(d)) !== null; )
+      r.index === i.lastIndex && i.lastIndex++, n.push(r);
     for (let a = n.length - 1; a > -1; a--) {
-      const d = n[a][0], l = n[a].index + 1, h = l + d.length - 1, u = "•".repeat(d.length), m = o.substring(0, l - 1), k = o.substring(h);
-      o = m + u + k;
+      const u = n[a][0], s = n[a].index + 1, h = s + u.length - 1, c = "•".repeat(u.length), g = d.substring(0, s - 1), m = d.substring(h);
+      d = g + c + m;
     }
-    for (i = /((?!•)\S[^•\n]*)/g; (s = i.exec(o)) !== null; )
-      s.index === i.lastIndex && i.lastIndex++, f(this, J).push(s.index), f(this, z).push(s[0].length);
-    for (i = /((?!•)\S[^•\n ]*)/g; (s = i.exec(o)) !== null; ) {
-      s.index === i.lastIndex && i.lastIndex++;
+    for (i = /((?!•)\S[^•\n]*)/g; (r = i.exec(d)) !== null; )
+      r.index === i.lastIndex && i.lastIndex++, p(this, z).push(r.index), p(this, K).push(r[0].length);
+    for (i = /((?!•)\S[^•\n ]*)/g; (r = i.exec(d)) !== null; ) {
+      r.index === i.lastIndex && i.lastIndex++;
       const a = {};
-      a.text = s[0], a.startsAt = s.index, a.endsAt = a.startsAt + s[0].length - 1, e.push(a), f(this, K).push(a.endsAt);
+      a.text = r[0], a.startsAt = r.index, a.endsAt = a.startsAt + r[0].length - 1, e.push(a), p(this, X).push(a.endsAt);
     }
-    v(this, G, e);
+    _(this, R, e);
   }
   makeMistakes() {
     let t = Math.ceil(Math.random() * 2) - 2;
     const e = Math.ceil(Math.random() * 3) + 2;
-    f(this, G).forEach((n) => {
+    p(this, R).forEach((n) => {
       if (t++, t % e !== 0 || n.text.length < 4)
         return;
-      const i = Math.ceil(Math.random() * n.text.length) - 1, s = String.fromCharCode(
+      const i = Math.ceil(Math.random() * n.text.length) - 1, r = String.fromCharCode(
         Math.ceil(Math.random() * 26) + 96
       );
-      f(this, X).push(n.startsAt + i), f(this, R).push(s);
+      p(this, Y).push(n.startsAt + i), p(this, P).push(r);
     });
   }
   makeFaultyText() {
-    let t = f(this, $);
-    f(this, R).forEach((e) => {
+    let t = p(this, $);
+    p(this, P).forEach((e) => {
       const n = t.substring(0, e.startsAt), i = t.substring(e.endsAt + 1);
       t = n + e.text + i;
-    }), v(this, $, t);
+    }), _(this, $, t);
   }
   splitTags(t) {
-    let e = [...t], n = e.length, i = 0, s = !1, o = 0;
+    let e = [...t], n = e.length, i = 0, r = !1, d = 0;
     const a = n;
-    let d = !1;
-    const l = [], h = [];
-    for (; e.length > 0 && !s && !d; ) {
+    let u = !1;
+    const s = [], h = [];
+    for (; e.length > 0 && !r && !u; ) {
       if (i === n) {
         if (i = 0, e = Object.values(e), n = e.length, n === 0) {
-          s = !0;
+          r = !0;
           continue;
         }
-        o++, d = o > a + 1;
+        d++, u = d > a + 1;
       }
-      const u = e[i];
-      if (e.length === 1 && u.name === "Eof") {
-        s = !0;
+      const c = e[i];
+      if (e.length === 1 && c.name === "Eof") {
+        r = !0;
         continue;
       }
-      if (this.isClosedTag(u) && u.name !== "Eof") {
+      if (this.isClosedTag(c) && c.name !== "Eof") {
         h[i] = e[i], delete e[i], i++;
         continue;
       }
       if (i + 1 < n) {
-        const m = e[i + 1];
-        if (!this.isCloserTag(u) && this.isCloserTag(m)) {
-          if (u.name !== m.name) {
-            l.push(u), delete e[i], i++;
+        const g = e[i + 1];
+        if (!this.isCloserTag(c) && this.isCloserTag(g)) {
+          if (c.name !== g.name) {
+            s.push(c), delete e[i], i++;
             continue;
           }
           h[i] = e[i], h[i + 1] = e[i + 1], delete e[i], delete e[i + 1], i += 2;
@@ -201,326 +201,319 @@ class jt {
       }
       i++;
     }
-    return { regularTags: h, singleTags: l };
+    return { regularTags: h, singleTags: s };
   }
   replaceTags(t, e) {
     let n = t, i = e;
-    const s = [];
-    e.forEach((o) => {
-      s[o.id] = o;
-    }), s.sort(), i = Object.values(s);
-    for (let o = i.length - 1; o > -1; o--) {
-      const a = i[o];
-      a.text = a.text.substring(0, a.text.length - 4) + ct + st;
-      const d = n.substring(0, a.startsAt), l = n.substring(a.endsAt + 1);
-      n = d + a.text + l;
+    const r = [];
+    e.forEach((d) => {
+      r[d.id] = d;
+    }), r.sort(), i = Object.values(r);
+    for (let d = i.length - 1; d > -1; d--) {
+      const a = i[d];
+      a.text = a.text.substring(0, a.text.length - 4) + ut + nt;
+      const u = n.substring(0, a.startsAt), s = n.substring(a.endsAt + 1);
+      n = u + a.text + s;
     }
     return n;
   }
   doComponents(t = "[\\w]+") {
-    let e = f(this, $);
+    let e = p(this, $);
     const n = this.collectTags(e, t), i = [];
-    let s = [], o = 0;
+    let r = [], d = 0;
     const a = [];
-    let d = n.length, l = 0, h = !1, u = 0;
-    const m = d;
-    let k = !1;
-    a[o] = -1;
-    const { singleTags: _ } = this.splitTags(n);
-    let x = n;
-    for (_.length && (_.forEach((y) => i.push(y.id)), e = this.replaceTags(e, _), x = this.collectTags(e, t)); x.length > 0 && !h && !k; ) {
-      if (l === d) {
-        if (l = 0, x = Object.values(x), d = x.length, d === 0) {
+    let u = n.length, s = 0, h = !1, c = 0;
+    const g = u;
+    let m = !1;
+    a[d] = -1;
+    const { singleTags: v } = this.splitTags(n);
+    let f = n;
+    for (v.length && (v.forEach((b) => i.push(b.id)), e = this.replaceTags(e, v), f = this.collectTags(e, t)); f.length > 0 && !h && !m; ) {
+      if (s === u) {
+        if (s = 0, f = Object.values(f), u = f.length, u === 0) {
           h = !0;
           continue;
         }
-        u++, k = u > m + 1;
+        c++, m = c > g + 1;
       }
-      const y = x[l];
-      if (x.length === 1 && y.name === "Eof") {
+      const b = f[s];
+      if (f.length === 1 && b.name === "Eof") {
         h = !0;
         continue;
       }
-      if (this.isClosedTag(y) && y.name !== "Eof") {
-        const L = this.makeTag(y, a, o, !1);
-        L.isSingle = i.includes(y.id), s[L.id] = L, delete x[l], l++;
+      if (this.isClosedTag(b) && b.name !== "Eof") {
+        const I = this.makeTag(b, a, d, !1);
+        I.isSingle = i.includes(b.id), r[I.id] = I, delete f[s], s++;
         continue;
       }
-      if (this.isCloserTag(y) && o--, l + 1 < d) {
-        const L = x[l + 1];
-        if (!this.isCloserTag(y) && this.isCloserTag(L)) {
-          const M = this.makeTag(y, a, o, !0), C = this.makeTag(
-            L,
+      if (this.isCloserTag(b) && d--, s + 1 < u) {
+        const I = f[s + 1];
+        if (!this.isCloserTag(b) && this.isCloserTag(I)) {
+          const M = this.makeTag(b, a, d, !0), C = this.makeTag(
+            I,
             a,
-            o,
+            d,
             !1,
             !0
           );
           C.contents = {}, C.parentId = M.id, C.contents.startsAt = M.endsAt + 1, C.contents.endsAt = C.startsAt;
-          const it = e.substring(
+          const lt = e.substring(
             C.contents.startsAt,
             C.contents.endsAt
           );
-          C.contents.text = it, M.closer = C, s[M.id] = M, delete x[l], delete x[l + 1], l += 2;
+          C.contents.text = lt, M.closer = C, r[M.id] = M, delete f[s], delete f[s + 1], s += 2;
           continue;
         }
-        !this.isCloserTag(y) && !this.isCloserTag(L) && (o++, a[o] = y.id);
+        !this.isCloserTag(b) && !this.isCloserTag(I) && (d++, a[d] = b.id);
       }
-      l++;
+      s++;
     }
-    s = Object.values(s), v(this, $, e), v(this, V, s);
+    r = Object.values(r), _(this, $, e), _(this, J, r);
   }
 }
-V = new WeakMap(), W = new WeakMap(), $ = new WeakMap(), G = new WeakMap(), J = new WeakMap(), z = new WeakMap(), K = new WeakMap(), R = new WeakMap(), X = new WeakMap(), nt = new WeakSet(), Tt = function() {
+J = new WeakMap(), G = new WeakMap(), $ = new WeakMap(), R = new WeakMap(), z = new WeakMap(), K = new WeakMap(), X = new WeakMap(), P = new WeakMap(), Y = new WeakMap(), it = new WeakSet(), kt = function() {
   return Date.now() * Math.random();
 };
-const S = "&lt;", I = "&gt;", j = "<", F = ">", N = "/", D = `
+const S = "&lt;", O = "&gt;", j = "<", F = ">", N = "/", D = `
 `;
-var Y, P, Z, Q, U;
-class kt {
-  constructor(t, e, n, i, s) {
-    A(this, Y, "");
-    A(this, P, 60);
-    A(this, Z, !1);
-    A(this, Q, () => {
-    });
+var Z, Q, tt, U, V;
+class Tt {
+  constructor(t, e, n, i, r) {
+    A(this, Z, "");
+    A(this, Q, 60);
+    A(this, tt, !1);
     A(this, U, () => {
     });
-    v(this, Q, t), v(this, Y, e), v(this, P, n), v(this, U, s), v(this, Z, i);
+    A(this, V, () => {
+    });
+    _(this, U, t), _(this, Z, e), _(this, Q, n), _(this, V, r), _(this, tt, i);
   }
   async writeLikeAHuman(t, e) {
-    const n = e !== void 0, i = f(this, Q).querySelector(
+    const n = e !== void 0, i = p(this, U).querySelector(
       `pre#${e} code`
-    ), s = f(this, Q).querySelector(
+    ), r = p(this, U).querySelector(
       n ? `pre#${t} code` : `div#${t}`
     );
-    let o = f(this, P), a = [], d = "", l = "", h = "", u = null, m = [];
-    const k = [];
-    let _ = "", x = "", y = -1;
-    const L = [], M = [];
-    let C = 0, it = this;
-    function ut(r) {
-      return new Promise((c) => {
-        setTimeout(c, r);
+    let d = p(this, Q), a = [], u = "", s = "", h = "", c = null, g = [];
+    const m = [];
+    let v = "", f = "", b = -1;
+    const I = [], M = [];
+    let C = 0, lt = this;
+    function dt(l) {
+      return new Promise((o) => {
+        setTimeout(o, l);
       });
     }
-    function yt(r) {
-      return Math.floor(r * 0.75 + Math.random() * r);
+    function yt(l) {
+      return Math.floor(l * 0.75 + Math.random() * l);
     }
-    async function E(r, c = !1) {
-      let b = a.join("");
-      c && (b = b.trim()), o = yt(f(it, P)), d += r, s.innerHTML = d + b, n && window.hljs !== void 0 && window.hljs.highlightElement(s), await ut(o);
+    async function E(l, o = !1) {
+      let T = a.join("");
+      o && (T = T.trim()), d = yt(p(lt, Q)), u += l, r.innerHTML = u + T, n && window.hljs !== void 0 && window.hljs.highlightElement(r), await dt(d);
     }
-    async function Et() {
-      const r = a.join("");
-      d = d.substring(0, d.length - 1), s.innerHTML = d + r, await ut(o);
+    async function vt() {
+      const l = a.join("");
+      u = u.substring(0, u.length - 1), r.innerHTML = u + l, await dt(d);
     }
-    function q(r) {
-      a.unshift(r);
+    function q(l) {
+      a.unshift(l);
     }
-    function tt() {
+    function et() {
       delete a[0], a = Object.values(a);
     }
-    function At(r) {
-      const c = [], b = /^([^\S][ \s]+)*/gm;
-      let O;
-      for (; (O = b.exec(r)) !== null; )
-        O.index === b.lastIndex && b.lastIndex++, c.push(O[0] ?? "");
-      return c;
+    function Et(l) {
+      const o = [], T = /^([^\S][ \s]+)*/gm;
+      let L;
+      for (; (L = T.exec(l)) !== null; )
+        L.index === T.lastIndex && T.lastIndex++, o.push(L[0] ?? "");
+      return o;
     }
-    function Ct(r) {
-      const c = /^([^\S][ \s]+)*/gm;
-      return r.replace(c, "");
+    function At(l) {
+      const o = /^([^\S][ \s]+)*/gm;
+      return l.replace(o, "");
     }
-    function vt(r) {
-      const c = r.split(`
+    function Ct(l) {
+      const o = l.split(`
 `);
       return `<br />
-`.repeat(c.length);
+`.repeat(o.length);
     }
-    async function $t(r) {
-      let c = "";
-      return await fetch(r).then((b) => b.text()).then((b) => {
-        c = b;
-      }), c;
+    async function _t(l) {
+      let o = "";
+      return await fetch(l).then((T) => T.text()).then((T) => {
+        o = T;
+      }), o;
     }
-    function _t(r) {
-      return r.replaceAll(
+    function $t(l) {
+      return l.replaceAll(
         S,
         j
-      ).replaceAll(I, F);
+      ).replaceAll(O, F);
     }
     function St() {
-      let r = null;
-      return m.length && (r = m.shift(), r.hasCloser && k.push(r)), r;
+      let l = null;
+      return g.length && (l = g.shift(), l.hasCloser && m.push(l)), l;
+    }
+    function It() {
+      return m.length ? m[m.length - 1] : null;
     }
     function Lt() {
-      return k.length ? k[k.length - 1] : null;
-    }
-    function Ot() {
-      if (!L.length)
+      if (!I.length)
         return null;
-      const r = L.pop(), c = M.pop();
-      q(c ? D + l + r : r);
+      const l = I.pop(), o = M.pop();
+      q(o ? D + s + l : l);
     }
-    function dt(r) {
-      let c = null;
-      if (!k.length || (c = Lt(), r === c.depth))
-        return c;
-      let b = !1;
-      for (let O = k.length - 1; O > -1; O--)
-        if (c = k[O], r === c.depth) {
-          b = !0;
+    function ht(l) {
+      let o = null;
+      if (!m.length || (o = It(), l === o.depth))
+        return o;
+      let T = !1;
+      for (let L = m.length - 1; L > -1; L--)
+        if (o = m[L], l === o.depth) {
+          T = !0;
           break;
         }
-      return b ? c : null;
+      return T ? o : null;
     }
-    const It = f(this, Y);
-    _ = await $t(It);
-    const ht = At(_);
-    _ = Ct(_);
-    const w = new jt(_, n);
-    if (w.doComponents(), m = [...w.list], x = w.workingText.replace(
-      `${D + S}Eof ${N}${I}`,
+    const Ot = p(this, Z);
+    v = await _t(Ot);
+    const ft = Et(v);
+    v = At(v);
+    const k = new jt(v, n);
+    if (k.doComponents(), g = [...k.list], f = k.workingText.replace(
+      `${D + S}Eof ${N}${O}`,
       ""
     ), n) {
       console.log({ sourceComponent: i });
-      const r = vt(_ + `
+      const l = Ct(v + `
 `);
-      console.log({ emptyText: r }), i.innerHTML = r, window.hljs !== void 0 && window.hljs.highlightElement(i);
+      console.log({ emptyText: l }), i.innerHTML = l, window.hljs !== void 0 && window.hljs.highlightElement(i);
     }
-    const Mt = ht[C] ?? "";
+    const Mt = ft[C] ?? "";
     await E(Mt), C++;
-    for (let r = 0; r < x.length; r++) {
-      let c = x[r];
-      if (n && c === j) {
-        c = S, await E(c);
+    for (let l = 0; l < f.length; l++) {
+      let o = f[l];
+      if (n && o === j) {
+        o = S, await E(o);
         continue;
       }
-      if (f(this, Z) && w.mistakes.length && w.phraseStarts.length && w.phraseStarts[0] === r) {
-        const T = w.phraseLengths[0];
-        for (let p = 0; p < T; p++) {
-          const H = r + p, lt = w.mistakeCursors[0];
-          if (c = x[H], lt === H ? await E(w.mistakes[0]) : await E(c), w.wordEnds.includes(H) && w.mistakeCursors.length) {
-            const et = w.mistakeCursors[0];
-            if (et <= H) {
-              const ot = H - et + 1;
-              for (let ft = 0; ft < ot; ft++)
-                await Et(), p--;
-              w.mistakes.shift(), w.mistakeCursors.shift();
+      if (p(this, tt) && k.mistakes.length && k.phraseStarts.length && k.phraseStarts[0] === l) {
+        const y = k.phraseLengths[0];
+        for (let w = 0; w < y; w++) {
+          const H = l + w, ot = k.mistakeCursors[0];
+          if (o = f[H], ot === H ? await E(k.mistakes[0]) : await E(o), k.wordEnds.includes(H) && k.mistakeCursors.length) {
+            const st = k.mistakeCursors[0];
+            if (st <= H) {
+              const rt = H - st + 1;
+              for (let gt = 0; gt < rt; gt++)
+                await vt(), w--;
+              k.mistakes.shift(), k.mistakeCursors.shift();
             }
           }
         }
-        w.phraseStarts.shift(), w.phraseLengths.shift(), r += T - 1;
+        k.phraseStarts.shift(), k.phraseLengths.shift(), l += y - 1;
         continue;
       }
-      const b = x.substring(r, r + 4), O = x.substring(r, r + 5);
-      if (c === "&" && O === "&oq;/") {
-        const T = x.substring(r + 5, r + 6), { word: p } = w.translateBracket(c, T);
-        tt(), await E(p), r += 9;
+      const T = f.substring(l, l + 4), L = f.substring(l, l + 5);
+      if (o === "&" && L === "&oq;/") {
+        const y = f.substring(l + 5, l + 6), { word: w } = k.translateBracket(o, y);
+        et(), await E(w), l += 9;
         continue;
       }
-      if (c === "&" && b === "&oq;") {
-        const T = x.substring(r + 4, r + 5), { word: p } = w.translateBracket(c, T);
-        q(p), await E(p), r += 8;
+      if (o === "&" && T === "&oq;") {
+        const y = f.substring(l + 4, l + 5), { word: w } = k.translateBracket(o, y);
+        q(w), await E(w), l += 8;
         continue;
       }
-      if (c === "&" && b === "&pp;") {
-        r += 3, await E(S);
+      if (o === "&" && T === "&pp;") {
+        l += 3, await E(S);
         continue;
       }
-      if (c === "&" && b === "&pg;") {
-        r += 3, await E(I);
+      if (o === "&" && T === "&pg;") {
+        l += 3, await E(O);
         continue;
       }
       if (n) {
-        if (c === "/" && O === N + I && u !== null && !u.hasCloser && u.endsAt === r + 4) {
-          c = N + I, tt(), await E(c), r += 4;
+        if (o === "/" && L === N + O && c !== null && !c.hasCloser && c.endsAt === l + 4) {
+          o = N + O, et(), await E(o), l += 4;
           continue;
         }
-        if (c === "&" && b === I && u !== null && u.endsAt === r + 3) {
-          tt(), await E(I), u.hasCloser && Ot(), r += 3;
+        if (o === "&" && T === O && c !== null && c.endsAt === l + 3) {
+          et(), await E(O), c.hasCloser && Lt(), l += 3;
           continue;
         }
       }
-      if (c === "&" && O === S + N) {
-        u = dt(y), u === null && y - 1 > -1 && (u = dt(y - 1)), c = u.closer.text, n || (c = j + N + u.closer.name + F);
-        const { word: T } = w.translateBracket(
-          c,
-          u.name,
+      if (o === "&" && L === S + N) {
+        c = ht(b), c === null && b - 1 > -1 && (c = ht(b - 1)), o = c.closer.text, n || (o = j + N + c.closer.name + F);
+        const { word: y } = k.translateBracket(
+          o,
+          c.name,
           !0
         );
-        if (c = T, c !== "") {
-          tt(), r = u.closer.endsAt, await E(c), y--, u = null;
+        if (o = y, o !== "") {
+          et(), l = c.closer.endsAt, await E(o), b--, c = null;
           continue;
         }
       }
-      if (c === "&" && b !== S) {
-        const T = x.substring(r).indexOf(";");
-        if (T > 8) {
-          await E(c);
+      if (o === "&" && T !== S) {
+        const y = f.substring(l).indexOf(";");
+        if (y > 8) {
+          await E(o);
           continue;
         }
-        const p = x.substring(r, r + T + 1);
-        await E(p), r += p.length - 1;
+        const w = f.substring(l, l + y + 1);
+        await E(w), l += w.length - 1;
         continue;
       }
-      if (c === "&" && b === S) {
-        if ((u === null || u !== null && u.dirty) && (u = St()), u.startsAt !== r) {
-          n ? (c = S, r += 3) : (c = u.text.replace(S, j), c = c.replace(I, F)), await E(c), u.dirty = !1;
+      if (o === "&" && T === S) {
+        if ((c === null || c !== null && c.dirty) && (c = St()), c.startsAt !== l) {
+          n ? (o = S, l += 3) : (o = c.text.replace(S, j), o = o.replace(O, F)), await E(o), c.dirty = !1;
           continue;
         }
-        u.dirty = !0;
-        let T = !1, p = "";
-        c = u.text, n || (c = u.text.replace(S, j), c = c.replace(I, F));
-        const { word: H, translated: lt } = w.translateBracket(
-          c,
-          u.name
+        c.dirty = !0;
+        let y = !1, w = "";
+        o = c.text, n || (o = c.text.replace(S, j), o = o.replace(O, F));
+        const { word: H, translated: ot } = k.translateBracket(
+          o,
+          c.name
         );
-        if (c = H, u.hasCloser) {
-          y++, p = u.closer.text, n || (p = j + N + u.closer.name + F);
-          const { word: et, translated: ot } = w.translateBracket(
-            p,
-            u.name,
+        if (o = H, c.hasCloser) {
+          b++, w = c.closer.text, n || (w = j + N + c.closer.name + F);
+          const { word: st, translated: rt } = k.translateBracket(
+            w,
+            c.name,
             !0
           );
-          p = et, T = u.closer.contents.text.indexOf(D) > -1, ot ? (r = u.endsAt, q(T ? D + l + p : p)) : (L.push(p), M.push(T));
+          w = st, y = c.closer.contents.text.indexOf(D) > -1, rt ? (l = c.endsAt, q(y ? D + s + w : w)) : (I.push(w), M.push(y));
         }
-        lt || (T = u.text.indexOf(D) > -1, n ? (c = S, r += 3, p = I) : (c = u.text.replace(S, j), c = c.replace(I, F), r += u.text.length - 1, p = j + N + u.closer.name + F), q(T ? D + l + p : p)), await E(c);
+        ot || (y = c.text.indexOf(D) > -1, n ? (o = S, l += 3, w = O) : (o = c.text.replace(S, j), o = o.replace(O, F), l += c.text.length - 1, w = j + N + c.closer.name + F), q(y ? D + s + w : w)), await E(o);
         continue;
       }
-      if (c === D) {
-        l = ht[C] ?? "", h = D + l;
-        const T = a.length ? a[0].trim() : "", p = x.substring(
-          r + 1,
-          r + T.length + 1
+      if (o === D) {
+        s = ft[C] ?? "", h = D + s;
+        const y = a.length ? a[0].trim() : "", w = f.substring(
+          l + 1,
+          l + y.length + 1
         );
-        C++, await E(h, T === p);
+        C++, await E(h, y === w);
         continue;
       }
-      await E(c);
+      await E(o);
     }
-    d = _t(d), this.finishedEvent(d);
+    u = $t(u), this.finishedEvent(u);
   }
   finishedEvent(t) {
-    typeof f(this, U) == "function" && f(this, U).call(this, t);
+    typeof p(this, V) == "function" && p(this, V).call(this, t);
   }
 }
-Y = new WeakMap(), P = new WeakMap(), Z = new WeakMap(), Q = new WeakMap(), U = new WeakMap();
-const Dt = /* @__PURE__ */ B("div", { class: "to-be-copied" }, [
-  /* @__PURE__ */ B("pre", { id: "to-copy" }, [
-    /* @__PURE__ */ B("code")
-  ])
-], -1), Bt = /* @__PURE__ */ B("div", { class: "to-be-written" }, [
-  /* @__PURE__ */ B("pre", { id: "to-write" }, [
-    /* @__PURE__ */ B("code")
-  ])
-], -1), qt = [
-  Dt,
-  Bt
-], Ht = pt({
+Z = new WeakMap(), Q = new WeakMap(), tt = new WeakMap(), U = new WeakMap(), V = new WeakMap();
+const Dt = { class: "to-be-copied" }, Bt = ["id"], qt = /* @__PURE__ */ B("code", null, null, -1), Ht = [
+  qt
+], Ft = { class: "to-be-written" }, Nt = ["id"], Wt = /* @__PURE__ */ B("code", null, null, -1), Gt = [
+  Wt
+], Rt = mt({
   name: "CodeWriter"
-}), Ft = /* @__PURE__ */ Object.assign(Ht, {
+}), Pt = /* @__PURE__ */ Object.assign(Rt, {
   props: {
     source: {
       default: ""
@@ -556,75 +549,87 @@ const Dt = /* @__PURE__ */ B("div", { class: "to-be-copied" }, [
       default: "html"
     }
   },
-  setup(g) {
-    const t = g, e = mt(null);
-    xt(async () => {
+  setup(x) {
+    const t = x, e = W(null), n = W(""), i = W(""), r = W(""), d = () => {
+      let s = Date.now().toString();
+      return s = s.substring(s.length - 4), s = btoa(s), s = s.replace(/=/g, ""), s;
+    };
+    n.value = d(), i.value = "to-copy-" + n.value, r.value = "to-write-" + n.value, xt(async () => {
       const s = e.value.ownerDocument;
       if (t.useHighlightJs) {
-        const o = t.theme ?? "base16/monokai", a = t.language ?? "html", d = s.createElement("script");
-        d.src = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js", s.head.appendChild(d);
-        const l = [];
-        l.push(
+        const h = t.theme ?? "base16/monokai", c = t.language ?? "html", g = s.createElement("script");
+        g.src = "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js", s.head.appendChild(g);
+        const m = [];
+        m.push(
           "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css"
-        ), l.push(
-          `https://highlightjs.org/static/demo/styles/${o}.css`
-        ), l.forEach((u) => {
-          const m = s.createElement("style");
-          m.innerHTML = `@import "${u}"`, s.head.appendChild(m);
+        ), m.push(
+          `https://highlightjs.org/static/demo/styles/${h}.css`
+        ), m.forEach((f) => {
+          const b = s.createElement("style");
+          b.innerHTML = `@import "${f}"`, s.head.appendChild(b);
         });
-        const h = s.querySelectorAll("code");
-        for (const u of h)
-          u.setAttribute("class", `language-${a}`);
+        const v = s.querySelectorAll("code");
+        for (const f of v)
+          f.setAttribute("class", `language-${c}`);
       }
-      if (t.styles !== "" && t.classes !== "" && (t.styles.split(",").forEach((d) => {
-        const l = s.createElement("style");
-        l.innerHTML = `@import "${d}"`, s.head.appendChild(l);
+      if (t.styles !== "" && t.classes !== "" && (t.styles.split(",").forEach((g) => {
+        const m = s.createElement("style");
+        m.innerHTML = `@import "${g}"`, s.head.appendChild(m);
       }), s.getElementById("to-write").setAttribute("class", t.classes)), t.dependsOnSelector !== "") {
-        const o = s.querySelector(t.dependsOnSelector);
-        if (o !== null) {
-          const a = { attributes: !0 };
+        const h = s.querySelector(t.dependsOnSelector);
+        if (h !== null) {
+          const c = { attributes: !0 };
           new MutationObserver(
-            async (l, h) => {
-              for (const u of l)
-                u.type === "attributes" && u.attributeName === "finished" && o.getAttribute("finished") === "true" && (h.disconnect(), await i());
+            async (m, v) => {
+              for (const f of m)
+                f.type === "attributes" && f.attributeName === "finished" && h.getAttribute("finished") === "true" && (v.disconnect(), await u());
             }
-          ).observe(o, a);
+          ).observe(h, c);
         }
       } else
-        await i();
+        await u();
     });
-    const n = function(s) {
-      const o = new CustomEvent("finishedWriting", {
+    const a = function(s) {
+      const h = new CustomEvent("finishedWriting", {
         bubbles: !0,
         cancellable: !0,
         detail: {
           content: s
         }
       });
-      e.value.dispatchEvent(o), e.value.setAttribute("finished", "true");
-    }, i = async () => {
+      e.value.dispatchEvent(h), e.value.setAttribute("finished", "true");
+    }, u = async () => {
       const s = e.value.ownerDocument;
-      await new kt(
+      await new Tt(
         s,
         t.source,
         t.speed,
         t.makeTypos,
-        n
-      ).writeLikeAHuman("to-write", "to-copy");
+        a
+      ).writeLikeAHuman(r, i);
     };
-    return (s, o) => (wt(), bt("div", {
+    return (s, h) => (wt(), bt("div", {
       ref_key: "root",
       ref: e,
       class: "code-snippet"
-    }, qt, 512));
+    }, [
+      B("div", Dt, [
+        B("pre", {
+          class: "placeholder",
+          id: i.value.value
+        }, Ht, 8, Bt)
+      ]),
+      B("div", Ft, [
+        B("pre", {
+          class: "to-write",
+          id: r.value.value
+        }, Gt, 8, Nt)
+      ])
+    ], 512));
   }
-}), Nt = /* @__PURE__ */ B("div", { class: "to-be-written" }, [
-  /* @__PURE__ */ B("div", { id: "to-write" })
-], -1), Wt = [
-  Nt
-], Gt = pt({
+}), Qt = { class: "to-be-written" }, Ut = ["id"], Vt = mt({
   name: "TextWriter"
-}), Rt = /* @__PURE__ */ Object.assign(Gt, {
+}), Jt = /* @__PURE__ */ Object.assign(Vt, {
   props: {
     source: {
       default: ""
@@ -651,62 +656,72 @@ const Dt = /* @__PURE__ */ B("div", { class: "to-be-copied" }, [
       default: !1
     }
   },
-  setup(g) {
-    const t = g, e = mt(null);
-    xt(async () => {
-      const s = e.value.ownerDocument;
-      if (t.styles !== "" && t.classes !== "" && (t.styles.split(",").forEach((d) => {
-        const l = s.createElement("style");
-        l.innerHTML = `@import "${d}"`, s.head.appendChild(l);
-      }), s.getElementById("to-write").setAttribute("class", t.classes)), t.dependsOnSelector !== "") {
-        const o = s.querySelector(t.dependsOnSelector);
-        if (o !== null) {
-          const a = { attributes: !0 };
+  setup(x) {
+    const t = x, e = W(null), n = W(""), i = W(""), r = () => {
+      let u = Date.now().toString();
+      return u = u.substring(u.length - 4), u = btoa(u), u = u.replace(/=/g, ""), u;
+    };
+    n.value = r(), i.value = "to-write-" + n.value, xt(async () => {
+      const u = e.value.ownerDocument;
+      if (t.styles !== "" && t.classes !== "" && (t.styles.split(",").forEach((c) => {
+        const g = u.createElement("style");
+        g.innerHTML = `@import "${c}"`, u.head.appendChild(g);
+      }), u.getElementById("to-write").setAttribute("class", t.classes)), t.dependsOnSelector !== "") {
+        const s = u.querySelector(t.dependsOnSelector);
+        if (s !== null) {
+          const h = { attributes: !0 };
           new MutationObserver(
-            async (l, h) => {
-              for (const u of l)
-                u.type === "attributes" && u.attributeName === "finished" && o.getAttribute("finished") === "true" && (h.disconnect(), await i());
+            async (g, m) => {
+              for (const v of g)
+                v.type === "attributes" && v.attributeName === "finished" && s.getAttribute("finished") === "true" && (m.disconnect(), await a());
             }
-          ).observe(o, a);
+          ).observe(s, h);
         }
       } else
-        await i();
+        await a();
     });
-    const n = function(s) {
-      const o = new CustomEvent("finishedWriting", {
+    const d = function(u) {
+      const s = new CustomEvent("finishedWriting", {
         bubbles: !0,
         cancellable: !0,
         detail: {
-          content: s
+          content: u
         }
       });
-      e.value.dispatchEvent(o), e.value.setAttribute("finished", "true");
-    }, i = async () => {
-      const s = e.value.ownerDocument;
-      await new kt(
-        s,
+      e.value.dispatchEvent(s), e.value.setAttribute("finished", "true");
+    }, a = async () => {
+      const u = e.value.ownerDocument;
+      await new Tt(
+        u,
         t.source,
         t.speed,
         t.makeTypos,
-        n
-      ).writeLikeAHuman("to-write");
+        d
+      ).writeLikeAHuman(i);
     };
-    return (s, o) => (wt(), bt("div", {
+    return (u, s) => (wt(), bt("div", {
       ref_key: "root",
       ref: e,
       class: "text-snippet"
-    }, Wt, 512));
+    }, [
+      B("div", Qt, [
+        B("div", {
+          class: "to-write",
+          id: i.value.value
+        }, null, 8, Ut)
+      ])
+    ], 512));
   }
-}), Pt = (g) => ({
-  textSpeed: g.speed,
-  textTypos: g.makeTypos
-}), Vt = {
-  install(g, t) {
-    g.config.globalProperties.$writerOptions = Pt(t), g.component("text-writer", Rt), g.component("code-writer", Ft);
+}), zt = (x) => ({
+  textSpeed: x.speed,
+  textTypos: x.makeTypos
+}), Yt = {
+  install(x, t) {
+    x.config.globalProperties.$writerOptions = zt(t), x.component("text-writer", Jt), x.component("code-writer", Pt);
   }
 };
 export {
-  Ft as CodeWriter,
-  Rt as TextWriter,
-  Vt as VueWriterPlugin
+  Pt as CodeWriter,
+  Jt as TextWriter,
+  Yt as VueWriterPlugin
 };

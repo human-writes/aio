@@ -4,9 +4,9 @@
 
 This package is a set of two components TextWriter and CodeWriter which imitate the human writing style on a keyboard.
 
-They are available as web components and as Vu3 plugin.
+They are available as web components and as Vue3 plugin.
 
-  <img src="vue/public/webcomponents.svg" alt="Web components" style="width:128px;"/><img src="vue/public/plus.svg" alt="plus" style="width:128px;"/><img src="vue/public/logo.svg" alt="vue3" style="width:128px;"/>
+  <img src="assets/public/webcomponents.svg" alt="Web components" style="width:128px;"/><img src="assets/public/plus.svg" alt="plus" style="width:128px;"/><img src="assets/public/vue.svg" alt="vue3" style="width:128px;"/>
 
 ### Features
 

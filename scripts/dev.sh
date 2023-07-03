@@ -23,6 +23,7 @@ then
     fi
 
     cp web/dist/human-writes.min.js tests/public
+    cp assets/*.svg tests/public
 
     echo;
     echo "Building Vite/Vue3 plugin...";

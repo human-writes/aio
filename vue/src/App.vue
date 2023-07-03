@@ -6,14 +6,14 @@ import "./style.css";
 <template>
     <div>
         <div>
+            <h1>@HumanWrites</h1>
             <img
-                alt="Vue logo"
-                class="logo"
-                src="/logo.svg"
-                width="125"
-                height="125"
+                src="/webcomponents.svg"
+                alt="Web components"
+                style="width: 92px"
             />
-            <h1>VueWriterPlugin</h1>
+            <img src="/plus.svg" alt="plus" style="width: 92px" />
+            <img src="/logo.svg" alt="vue3" style="width: 92px" />
         </div>
         <div>
             <text-writer
@@ -22,7 +22,6 @@ import "./style.css";
                 speed="40"
             />
         </div>
-
         <div>
             <code-writer
                 name="code-hello"

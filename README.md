@@ -2,8 +2,11 @@
 
 ## What is it?
 
-This package is a set of two web components TextWriter and CodeWriter which imitate the human writing style on a
-keyboard.
+This package is a set of two components TextWriter and CodeWriter which imitate the human writing style on a keyboard.
+
+They are available as web components and as Vu3 plugin.
+
+  <img src="vue/public/webcomponents.svg" alt="Web components" style="width:128px;"/><img src="vue/public/plus.svg" alt="plus" style="width:128px;"/><img src="vue/public/logo.svg" alt="vue3" style="width:128px;"/>
 
 ### Features
 
@@ -13,7 +16,7 @@ CodeWriter writes HTML text inside a _pre_ tag embedding a _code_ tag for the de
 written as is and not interpreted.
 
 CodeWriter supports code highlighting thanks to HighlightJS library integration. All resources of the HighlightJS
-library are requested inside the webcomponent, so you do not have to worry about them.
+library are requested inside the web component, so you do not have to worry about them.
 
 The writing speed depends on the delay between two charaters plus the process time to determine the character to
 display. The delay is 60 milliseconds by default.
@@ -70,7 +73,7 @@ TextWriter can help you to catch the attention of the visitor on this part of yo
 
 #### Implementation
 
-Store your text block in a place accessible by URL and declare it as a source of the webcomponent.
+Store your text block in a place accessible by URL and declare it as a source of the component.
 
 ```html
 
@@ -96,12 +99,24 @@ it writes code in between.
 
 #### Implementation
 
-Store your block of code in a place accessible by URL and declare it as a source of the webcomponent.
+Store your block of code in a place accessible by URL and declare it as a source of the component.
 
 ```html
-
 <code-writer
     depends-on-selector="text-writer[name='hello']"
+    source="/my-block-of-code.html"
+    use-highlight-js="true"
+    theme="base16/monokai"
+    language="php"
+>
+</code-writer>
+```
+
+Note that when using the Vue3 plugin, you cannot point the component by its tag name since Vue3 only renders the content of the component. The attributes of the Vue3 plugin are transfered to the first child of the plugin content which is a div.
+
+```html
+<code-writer
+    depends-on-selector="div[name='hello']"
     source="/my-block-of-code.html"
     use-highlight-js="true"
     theme="base16/monokai"
@@ -117,24 +132,6 @@ Find more themes and languages on https://highlightjs.org.
 ## State of the project
 
 Feel free to send me feedback of your experience to _ohmyinbox99_at_gmail_dot_com_ (yes that's it).
-
-## Changelog
-
-v0.5.62 - Update highlight.js dependency
-
-v0.5.61 - Update this README.
-
-v0.5.60 - Separate web components from Core package.
-
-v0.5.50 - Refactor the components in order to remove a lot of ducplicate code.
-
-v0.5.49 - Fix typos that were all the same for one instance of a web component. Add a feature to write at random speed.
-
-v0.5.48 - Add a feature to chain components one after the other.
-
-v0.5.47 - Update this README with the demo site.
-
-v0.5.46 - Fix a bug that prevented CodeWriter from working in some cases.
 
 ## Roadmap
 

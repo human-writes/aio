@@ -28,7 +28,7 @@
   },
   "exclude": [
     "App.vue",
-    "main.ts",
+    "src/main.ts",
     "*.phtml"
   ],
   "include": [

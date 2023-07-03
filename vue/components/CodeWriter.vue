@@ -4,10 +4,13 @@
             <pre
                 class="to-place"
                 :class="placeholderId"
-            ><code></code></pre>
+            ><code :class="codeId"></code></pre>
         </div>
         <div class="to-be-written">
-            <pre class="to-write" :class="paperId"><code></code></pre>
+            <pre 
+                class="to-write" 
+                :class="paperId"
+            ><code :class="codeId"></code></pre>
         </div>
     </div>
 </template>
@@ -20,6 +23,7 @@ const root = ref(null);
 const mainId = ref("");
 const placeholderId = ref("");
 const paperId = ref("");
+const codeId = ref("");
 
 const props = defineProps({
     source: {
@@ -69,10 +73,11 @@ const makeId = () => {
 mainId.value = makeId();
 placeholderId.value = "to-place-" + mainId.value;
 paperId.value = "to-write-" + mainId.value;
+codeId.value = "to-code-" + mainId.value;
 
 onMounted(async () => {
     const doc = root.value.ownerDocument;
-    if (props.useHighlightJs) {
+    if (props.useHighlightJs && window.hljs === undefined) {
         const $theme = props.theme ?? "base16/monokai";
         const $language = props.language ?? "html";
 
@@ -96,7 +101,7 @@ onMounted(async () => {
             doc.head.appendChild(style);
         });
 
-        const $parentDiv = doc.querySelectorAll("code");
+        const $parentDiv = doc.querySelectorAll("." + codeId.value);
         for (const node of $parentDiv) {
             node.setAttribute("class", `language-${$language}`);
         }
@@ -181,7 +186,7 @@ const writeLikeAHuman = async () => {
 </script>
 <script>
 import { defineComponent } from "vue";
-import "../style.css";
+import "../src/style.css";
 
 export default defineComponent({
     name: "CodeWriter"

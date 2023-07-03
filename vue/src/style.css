@@ -2,35 +2,35 @@
     --snippet-width: 50vw;
 }
 
-.to-place {
-    display: block;
-    position: relative;
-    float: left;
-    width: var(--snippet-width);
-}
-
-.to-write {
-    width: var(--snippet-width);
-}
-
-.to-be-placed {
-    display: block;
-    position: relative;
-    float: left;
-}
-
-.to-be-written {
-    display: flex;
-    position: absolute;
-    width: var(--snippet-width);
-}
-
 .code-snippet {
     display: flex;
     font-size: small;
 }
 
-div,
+.code-snippet .to-be-placed {
+    display: block;
+    position: relative;
+    float: left;
+}
+
+.code-snippet .to-place {
+    display: block;
+    position: relative;
+    float: left;
+    width: var(--snippet-width);
+}
+
+.code-snippet .to-be-written {
+    display: flex;
+    position: absolute;
+    width: var(--snippet-width);
+}
+
+.code-snippet .to-write {
+    width: var(--snippet-width);
+}
+
+.code-snippet div,
 p,
 span,
 textarea {

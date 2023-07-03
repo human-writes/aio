@@ -6,7 +6,7 @@ This package is a set of two components TextWriter and CodeWriter which imitate 
 
 They are available as web components and as Vue3 plugin.
 
-  <img src="assets/public/webcomponents.svg" alt="Web components" style="width:128px;"/><img src="assets/public/plus.svg" alt="plus" style="width:128px;"/><img src="assets/public/vue.svg" alt="vue3" style="width:128px;"/>
+ ![3rd party logos](assets/human-writes_3rdparty_small.png)
 
 ### Features
 

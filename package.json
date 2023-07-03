@@ -5,12 +5,14 @@
   "version": "0.6.0",
   "main": "index.js",
   "scripts": {
+    "dev": "sh scripts/dev.sh all",
+    "build": "sh scripts/build.sh all",
     "web:dev": "cd web;webpack --config webpack.config.js",
     "web:build": "cd web;gulp",
     "web:lint": "cd web;npx eslint --ext .mjs,.cjs,.js components",
     "vue:dev": "cd vue;vite",
     "vue:build": "cd vue;vite build && vue-tsc --emitDeclarationOnly",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cd tests;vite"
   },
   "repository": {
     "type": "git",

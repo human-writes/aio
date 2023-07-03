@@ -24,14 +24,23 @@ export class Writer {
 
     #finishedCallback = () => {};
 
-    async writeLikeAHuman(toWrite, toPlace) {
-        const isCodeWriter = toPlace !== undefined;
-        const sourceComponent = this.#ownerDocument.querySelector(
-            `pre.to-place.${toPlace} code`
-        );
-        const targetComponent = this.#ownerDocument.querySelector(
-            isCodeWriter ? `pre.to-write.${toWrite} code` : `div.to-write.${toWrite}`
-        );
+    static makeId() {
+        let result = Date.now().toString();
+        result = result.substring(result.length - 4);
+        result = btoa(result);
+        result = result.replace(/=/g, "");
+
+        return result;
+    }
+
+    async writeLikeAHuman(toWriteSelector, toPlaceSelector) {
+        const isCodeWriter = toPlaceSelector !== undefined;
+        const sourceComponent =
+            this.#ownerDocument.querySelector(toPlaceSelector);
+        const targetComponent =
+            this.#ownerDocument.querySelector(toWriteSelector);
+
+        console.log({ toWriteSelector, targetComponent });
 
         let speed = this.#speed;
         let reg = [];

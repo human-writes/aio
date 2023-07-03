@@ -41,16 +41,7 @@ const props = defineProps({
     }
 });
 
-const makeId = () => {
-    let result = Date.now().toString();
-    result = result.substring(result.length - 4);
-    result = btoa(result);
-    result = result.replace(/=/g, "");
-
-    return result;
-};
-
-mainId.value = makeId();
+mainId.value = Writer.makeId();
 paperId.value = "paper-" + mainId.value;
 
 onMounted(async () => {
@@ -130,7 +121,7 @@ const writeLikeAHuman = async () => {
         props.makeTypos,
         onFinishedWriting
     );
-    await tw.writeLikeAHuman(paperId.value);
+    await tw.writeLikeAHuman(`div.to-write.${paperId.value}`);
 };
 </script>
 

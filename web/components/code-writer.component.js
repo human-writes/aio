@@ -10,39 +10,35 @@ export default class CodeWriterComponent extends WriterComponent {
         });
         this.shadowRoot.innerHTML = `
 <style>
-
-#to-copy {
-    display: block;
-    position: relative;
-    float: left;
-    width: ${this.snippetWidth};
-}
-
-#to-write {
-    width: ${this.snippetWidth};
-}
-
-.to-be-copied {
-    display: block;
-    position: relative;
-    float: left;
-}
-
-.to-be-written {
-    display: flex;
-    position: absolute;
-    width: ${this.snippetWidth};
-}
-
 .code-snippet {
     display: flex;
     font-size: medium;
 }
 
-div,
-p,
-span,
-textarea {
+.code-snippet .to-be-placed {
+    display: block;
+    position: relative;
+    float: left;
+}
+
+.code-snippet .to-place {
+    display: block;
+    position: relative;
+    float: left;
+    width: ${this.snippetWidth};
+}
+
+.code-snippet .to-be-written {
+    display: flex;
+    position: absolute;
+    width: ${this.snippetWidth};
+}
+
+.code-snippet .to-write {
+    width: ${this.snippetWidth};
+}
+
+.code-snippet div, p, span, textarea {
     -tab-size: 4;
     -o-tab-size: 4;
     -moz-tab-size: 4;
@@ -51,11 +47,11 @@ textarea {
 </style>
 
 <div class="code-snippet">
-    <div class="to-be-copied">
-        <pre id="to-copy"><code></code></pre>
+    <div class="to-be-placed">
+        <pre class="to-place"><code></code></pre>
     </div>
     <div class="to-be-written">
-        <pre id="to-write"><code></code></pre>
+        <pre class="to-write"><code></code></pre>
     </div>
 </div>
 `;
@@ -153,6 +149,6 @@ textarea {
             this.makeTypos,
             onFinished
         );
-        await cw.writeLikeAHuman("to-write", "to-copy");
+        await cw.writeLikeAHuman("pre.to-write code", "pre.to-place code");
     }
 }

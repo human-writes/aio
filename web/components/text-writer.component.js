@@ -9,7 +9,7 @@ export default class TextWriterComponent extends WriterComponent {
         this.shadowRoot.innerHTML = `
 <div class="text-snippet">
     <div class="to-be-written">
-        <div id="to-write"></div>
+        <div class="to-write"></div>
     </div>
 </div>
 `;
@@ -38,6 +38,6 @@ export default class TextWriterComponent extends WriterComponent {
             this.makeTypos,
             onFinished
         );
-        await tw.writeLikeAHuman("to-write");
+        await tw.writeLikeAHuman("div.to-write");
     }
 }

@@ -61,16 +61,7 @@ const props = defineProps({
     }
 });
 
-const makeId = () => {
-    let result = Date.now().toString();
-    result = result.substring(result.length - 4);
-    result = btoa(result);
-    result = result.replace(/=/g, "");
-
-    return result;
-};
-
-mainId.value = makeId();
+mainId.value = Writer.makeId();
 placeholderId.value = "to-place-" + mainId.value;
 paperId.value = "to-write-" + mainId.value;
 codeId.value = "to-code-" + mainId.value;
@@ -119,7 +110,7 @@ onMounted(async () => {
             doc.head.appendChild(style);
         });
 
-        const parentDiv = doc.getElementById(paperId.value);
+        const parentDiv = $doc.querySelector("." + paperId.value);
         parentDiv.setAttribute("class", props.classes);
     }
 
@@ -181,12 +172,12 @@ const writeLikeAHuman = async () => {
         props.makeTypos,
         onFinishedWriting
     );
-    await tw.writeLikeAHuman(paperId.value, placeholderId.value);
+    await tw.writeLikeAHuman(`pre.to-write.${paperId.value} code`, `pre.to-place.${placeholderId.value} code`);
 };
 </script>
 <script>
 import { defineComponent } from "vue";
-import "../src/style.css";
+import "../../assets/style.css";
 
 export default defineComponent({
     name: "CodeWriter"

@@ -61,8 +61,12 @@ export default class WriterComponent extends HTMLElement {
                 this.shadowRoot.appendChild(style);
             });
 
-            const parentDiv = this.shadowRoot.getElementById("to-write");
-            parentDiv.setAttribute("class", this.classes);
+            const parentDiv = this.shadowRoot.querySelector(".to-write");
+            let parentClass = parentDiv.getAttribute("class");
+            parentClass += " " + this.classes;
+
+            console.log({ parentClass });
+            parentDiv.setAttribute("class", parentClass);
         }
 
         if (this.dependsOnSelector !== null) {

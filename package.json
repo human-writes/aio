@@ -8,7 +8,7 @@
     "dev": "sh scripts/dev.sh all",
     "build": "sh scripts/build.sh all",
     "lint": "sh scripts/lint.sh all",
-    "test:app": "cd tests;vite",
+    "demo": "cd demo;vite",
     "test:unit": "vitest"
   },
   "repository": {

@@ -10,12 +10,12 @@ defineProps({
 <template>
     <div class="greetings">
         <text-writer id="text-you-did" speed="40">
-            <h2 class="green">{{ msg }}</h2>
+            <h1 class="green">{{ msg }}</h1>
         </text-writer>
 
         <text-writer
-            name="text-world"
             depends-on-selector="#text-you-did"
+            name="text-world"
             speed="40"
         >
             <h3>You’ve successfully created</h3>

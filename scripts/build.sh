@@ -32,7 +32,7 @@ then
 
     echo;
     echo "Building Vite/Vue3 test app...";
-    cd tests;vite build;cd $CWD;
+    cd demo;vite build;cd $CWD;
 
     exit 0;
 fi

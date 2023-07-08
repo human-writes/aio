@@ -212,9 +212,11 @@ export class Writer {
             return result;
         }
 
-        const codeSource = this.#source;
-
-        text = await loadText(codeSource);
+        if (this.#source.substring(0, 7) === "#!text#") {
+            text = this.#source.substring(7);
+        } else {
+            text = await loadText(this.#source);
+        }
 
         // Seek and destroy indents
         const indents = parseIndents(text);

@@ -1,7 +1,9 @@
 <template>
     <div ref="root" class="text-snippet">
         <div class="to-be-written">
-            <div class="to-write" :class="paperId"></div>
+            <div class="to-write" :class="paperId">
+                <slot></slot>
+            </div>
         </div>
     </div>
 </template>
@@ -13,6 +15,7 @@ import { Writer } from "../../core/writer.js";
 const root = ref(null);
 const mainId = ref("");
 const paperId = ref("");
+const source = ref("");
 
 const props = defineProps({
     source: {
@@ -46,6 +49,12 @@ paperId.value = "paper-" + mainId.value;
 
 onMounted(async () => {
     const $doc = root.value.ownerDocument;
+
+    const $slotTag = $doc.querySelector("div.to-write." + paperId.value);
+    // TODO: catch the code
+    console.log({ slot: $slotTag.innerHTML, cl: ".me ." + paperId.value });
+    source.value = props.source === "" ? "#!text#" + $slotTag.innerHTML : props.source;
+    $slotTag.innerText = ''
 
     /**
      * The magic starts here
@@ -116,7 +125,7 @@ const writeLikeAHuman = async () => {
 
     const tw = new Writer(
         doc,
-        props.source,
+        source.value,
         props.speed,
         props.makeTypos,
         onFinishedWriting

@@ -1,7 +1,14 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import { VueWriterPlugin } from "@human-writes/aio/vue";
+import './assets/main.css'
 
-const app = createApp(App);
-app.use(VueWriterPlugin, { textSpeed: 20, textTypos: false });
-app.mount("#app");
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+
+import { VueWriterPlugin } from '@human-writes/aio/vue'
+
+const app = createApp(App)
+
+app.use(VueWriterPlugin, { speed: 40, makeTypos: false })
+app.use(router)
+
+app.mount('#app')

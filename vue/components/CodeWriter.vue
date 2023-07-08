@@ -7,8 +7,8 @@
             ><code :class="codeId"></code></pre>
         </div>
         <div class="to-be-written">
-            <pre 
-                class="to-write" 
+            <pre
+                class="to-write"
                 :class="paperId"
             ><code :class="codeId"></code></pre>
         </div>
@@ -54,7 +54,7 @@ const props = defineProps({
         default: false
     },
     theme: {
-        default: "base16/monokai"
+        default: ""
     },
     language: {
         default: "html"
@@ -69,7 +69,6 @@ codeId.value = "to-code-" + mainId.value;
 onMounted(async () => {
     const doc = root.value.ownerDocument;
     if (props.useHighlightJs && window.hljs === undefined) {
-        const $theme = props.theme ?? "base16/monokai";
         const $language = props.language ?? "html";
 
         const script = doc.createElement("script");
@@ -81,9 +80,12 @@ onMounted(async () => {
         $styleList.push(
             "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css"
         );
-        $styleList.push(
-            `https://highlightjs.org/static/demo/styles/${$theme}.css`
-        );
+
+        if (props.theme !== "") {
+            $styleList.push(
+                `https://highlightjs.org/static/demo/styles/${props.theme}.css`
+            );
+        }
 
         $styleList.forEach(($item) => {
             const style = doc.createElement("style");
@@ -172,7 +174,10 @@ const writeLikeAHuman = async () => {
         props.makeTypos,
         onFinishedWriting
     );
-    await tw.writeLikeAHuman(`pre.to-write.${paperId.value} code`, `pre.to-place.${placeholderId.value} code`);
+    await tw.writeLikeAHuman(
+        `pre.to-write.${paperId.value} code`,
+        `pre.to-place.${placeholderId.value} code`
+    );
 };
 </script>
 <script>

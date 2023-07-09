@@ -68,12 +68,10 @@ main {
   }
 
   .logo {
-    margin: 0 2rem 0 0;
+    margin: 0 2rem 0 2rem;
   }
 
   header .wrapper {
-    display: flex;
-    place-items: flex-start;
     flex-wrap: wrap;
   }
 }

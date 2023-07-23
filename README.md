@@ -22,9 +22,6 @@ TextWriter can help you to catch the attention of the visitor on this part of yo
 You have an IT oriented technical documentation, and you want to share code snippets. This is a quite common use-case
 nowadays.
 
-CodeWriter does the same job as TextWriter except it follows code syntax workflow by opening and closing brackets before
-it writes code in between.
-
 ## Installation and usage
 
 [Web components](web/README.md)
@@ -38,6 +35,10 @@ it writes code in between.
 The component writes raw and HTML text. When an HTML tag is found the style of this tag is applied to the text.
 
 ### CodeWriter
+
+CodeWriter does almost the same job as TextWriter except it follows code syntax workflow by opening and closing brackets
+before
+it writes code in between.
 
 The component writes HTML text inside a _pre_ tag embedding a _code_ tag for the decoration. When a tag is found it is
 written as is and not interpreted.

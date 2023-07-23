@@ -1,6 +1,8 @@
 # CHANGELOG
 
-v0.6.0  - Add a Vu3 plugin.
+v0.7.0 - This is now an All-in-One package with web components, Vu3 plugin, Vue3 demo app and tests.
+
+v0.6.0 - Add a Vu3 plugin.
 
 v0.5.63 - Core files are no more strongly linked to web components.
 

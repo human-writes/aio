@@ -1,3 +1,5 @@
+![Vue3 plugin](../assets/vue-logo_128px.png)
+
 # The Vue3 plugin
 
 If you have a Vue3 based project you will surely prefer to use the Vue3 plugin.
@@ -44,16 +46,16 @@ Example of Vue3 component with TextWriter only:
 Let's say you have a Vue3 project tree looking like this:
 
 ```text
-|-> public/
-    |-> snippets/
-        |-> code.html
-    |-> texts/
-        |-> introduction.html
-|-> src/
-    |-> components/
-        |-> My.vue    
-    |-> App.vue
-    |-> main.js
+/public/
+|── snippets/
+|   └── code.html
+└── texts/
+    └── introduction.html
+/src/
+|── components/
+|   └── My.vue    
+|── App.vue
+└── main.js
 index.html
 ```
 
@@ -63,20 +65,28 @@ Where _My.vue_ could implement a TextWriter component like this:
 
 ```html
 
-<text-writer
-        id="hello"
-        source="/texts/introduction.html"
->
-</text-writer>
+<template>
+    <div>
+        <text-writer
+                id="hello"
+                source="/texts/introduction.html"
+        >
+        </text-writer>
+    </div>
+</template>
 ```
 
 If the text is simple, you can just set it within the component as follows:
 
 ```html
 
-<text-writer id="hello">
-    <h1>Hello world!</h1>
-</text-writer>
+<template>
+    <div>
+        <text-writer id="hello">
+            <h1>Hello world!</h1>
+        </text-writer>
+    </div>
+</template>
 ```
 
 ### Using CodeWriter
@@ -112,8 +122,28 @@ can wait for CodeWriter and vice versa.
 
 ## Playing the demo
 
-You can easily start discovering all the features by launching the demo app:
+Download the zip archive:
 
-    npm run demo
+```sh
+wget https://github.com/human-writes/aio/archive/refs/heads/main.zip
+unzip main.zip
+cd aio-main
+```
+
+or clone the repo as anonymous:
+
+```sh
+git clone https://github.com/human-writes/aio.git
+cd aio
+```
+
+install the modules and launch the demo app
+
+```sh
+npm install
+npm run demo
+```
+
+You can now start discovering all the features by changing the code.
 
 [Back to main README](../README.md)

@@ -1,8 +1,13 @@
+![Web components](../assets/webcomponents_128px.png)
+
 # The web components
+
+The web component solution is mostly preferable for backend oriented applications that don't share a setup with NodeJS
+or with fully static HTML sites.
 
 ## Installation
 
-You can also find the script here https://www.human-writes.io/js/human-writes/latest/human-writes.min.js.
+You can find the script here https://www.human-writes.io/js/human-writes/latest/human-writes.min.js.
 
 Add this line in the head section of your page:
 
@@ -16,21 +21,21 @@ Add this line in the head section of your page:
 Let's say you have a PHP project tree looking like this:
 
 ```text
-|-> app/
-    |-> components/
-        |-> My.phtml    
-    |-> App.phtml
-|-> public/
-    |-> css/
-        |-> index.css
-        |-> app.css
-    |-> snippets/
-        |-> code.html
-    |-> texts/
-        |-> introduction.html
-    |-> bootstrap.php    
-    |-> index.php    
-|-> vendor/
+/app/
+|── components/
+|   └── My.phtml    
+└── App.phtml
+/public/
+|── css/
+|   └── index.css
+|   └── app.css
+|── snippets/
+|   └── code.html
+|── texts/
+|   └── introduction.html
+|── bootstrap.php    
+└── index.php    
+/vendor/
 composer.json
 ```
 
@@ -66,6 +71,15 @@ Store your block of code in a place accessible by URL and declare it as a source
 >
 </code-writer>
 ```
+
+### Chaining the components
+
+As you can note in CodeWrite sample, we use
+
+    depends-on-selector="text-writer[name='hello']"
+
+This directive will tell the component to wait for the component with id "Hello" to finish writing the text. TextWriter
+can wait for CodeWriter and vice versa.
 
 ## Live demo
 

@@ -1,10 +1,12 @@
-# HumanWrites/AiO
+![@human-writes/AiO](assets/human-writes-logo_128px.png)
+
+# @HumanWrites/AiO
 
 ## What is it?
 
-This package is a set of two components TextWriter and CodeWriter which imitate the human writing style on a keyboard.
+This is a set of two components TextWriter and CodeWriter which imitate the human writing style on a keyboard.
 
-They are available as web components and as Vue3 plugin.
+They are available in an All-in-One package as web components and as a Vue3 plugin.
 
 ![3rd party logos](assets/human-writes_3rdparty_small.png)
 
@@ -22,6 +24,12 @@ nowadays.
 
 CodeWriter does the same job as TextWriter except it follows code syntax workflow by opening and closing brackets before
 it writes code in between.
+
+## Installation and usage
+
+[Web components](web/README.md)
+
+[Vue3 plugin](vue/README.md)
 
 ## How does it work?
 
@@ -57,20 +65,17 @@ Both components also propose to:
 
 - make typos :angry:
 - correct typos right away :smile:
-- chain two components with the parameter _depends-on-selector_, eg: with 2 components if the second references the
+- chain two components with the parameter _depends-on-selector_: For instance, with 2 components, if the second
+  references the
   first it starts when the first finishes.
-- write at random speed. The speed is computed from 25% faster to 75% slower than the given speed parameter.
+- write at random speed: The speed is computed from 25% faster to 75% slower than the given speed parameter.
 
 ### What will never work
 
 You cannot set a code snippet as source of TextWriter, it will not write what you expect and won't raise an error for
 it.
 
-## Installation
-
-[Web components](web/README.md)
-
-[Vue3 plugin](vue/README.md)
+You can set a text as source of CodeWriter, but it will not be as readable as expected and won't raise an error for it.
 
 ## Help
 

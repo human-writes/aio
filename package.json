@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:human-writes/web-components.git"
+    "url": "git@github.com:human-writes/aio.git"
   },
   "type": "module",
   "keywords": [
